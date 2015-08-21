@@ -1,0 +1,70 @@
+# .bash_library -*- Mode: Shell-script; -*-
+# This is where bash utility functions are placed.  Included from (at least)
+# .bash_profile and .bashrc and has include guards such that it can only
+# be included once.
+
+if [ "$BASH_LIBRARY" ]; then
+    # We've already loaded the library, so do nothing
+    : # NOP
+else
+    # Load the library
+
+    # This checks for given programs on the system
+    inpath()
+    {
+        type $1 &> /dev/null
+    }
+
+    # Setup the environment
+    set -a
+    
+    # First, setup the PATH
+    if [ -x /usr/libexec/path_helper ]; then
+        eval $(/usr/libexec/path_helper -s)
+    fi
+    PATH=$PATH:/usr/local/sbin
+    PATH=/usr/local/heroku/bin:$PATH
+    PATH=/usr/local/mysql/bin:$PATH
+    PATH=$HOME/bin:$PATH
+
+    # Turn on color for FreeBSD/Darwin ls
+    CLICOLOR=yes
+
+    # Set colors for GNU ls
+    inpath dircolors && eval $(dircolors -b $HOME/.dircolorsrc)
+
+    EDITOR=$HOME/bin/e
+    
+    # Default to using less for a pager 
+    inpath less && PAGER=less
+    # Activate the less filters.
+    inpath lesspipe && eval $(lesspipe)
+
+    # Setup UTF-8 locale
+    # Note: in theory, checking for present locales is done via the `locale'
+    # command; however, I can't be bothered.
+    LANG=en_US.UTF-8
+
+    # Default to use ssh for rsync
+    RSYNC_RSH=ssh
+
+	# Put rbenv stuff into brew area
+	RBENV_ROOT=/usr/local/var/rbenv
+
+    # Set the XAUTHORITY so that suid X11 applications work.
+    XAUTHORITY=$HOME/.Xauthority
+
+    # End setup of the environment
+    set +a
+    
+    # Setup HOSTFILE from the ssh known_hosts file
+    HOSTFILE="$HOME/.bash_hostfile"
+    if [ -f $HOME/.ssh/known_hosts ]; then
+        cut -f 1 -d ' ' $HOME/.ssh/known_hosts |
+            tr ',' '\n' |
+            sort -u |
+            egrep '[[:alpha:]]+\.'  > $HOSTFILE
+    fi
+
+    BASH_LIBRARY="yes"
+fi
