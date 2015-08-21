@@ -15,7 +15,7 @@ fi
 # Set XTerm and compatibles titlebars
 case $TERM in
 	xterm*)
-		PROMPT_COMMAND='history -a; history -n; echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD}\007"'
+		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD}\007"'
 		;;
 	*)
 		;;

@@ -25,6 +25,8 @@ else
     PATH=$PATH:/usr/local/sbin
     PATH=/usr/local/heroku/bin:$PATH
     PATH=/usr/local/mysql/bin:$PATH
+    PATH=/usr/local/go/bin:$PATH
+    PATH=$HOME/src/arcanist/bin:$PATH
     PATH=$HOME/bin:$PATH
 
     # Turn on color for FreeBSD/Darwin ls
@@ -48,12 +50,15 @@ else
     # Default to use ssh for rsync
     RSYNC_RSH=ssh
 
-	# Put rbenv stuff into brew area
-	RBENV_ROOT=/usr/local/var/rbenv
+    # Put rbenv stuff into brew area
+    RBENV_ROOT=/usr/local/var/rbenv
 
     # Set the XAUTHORITY so that suid X11 applications work.
     XAUTHORITY=$HOME/.Xauthority
 
+    # Nuna malarky
+    NUNA_ROOT=$HOME/src/analytics
+    
     # End setup of the environment
     set +a
     
