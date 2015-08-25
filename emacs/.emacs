@@ -66,6 +66,10 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-hook 'markdown-mode-hook (lambda () (visual-line-mode t)))
 
+;; ruby-mode
+(add-to-list 'auto-mode-alist
+             '("\\.podspec\\'" . ruby-mode))
+
 ;; yaml-mode
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
