@@ -1,0 +1,7 @@
+#! /usr/bin/osascript
+
+tell application "Contacts"
+     set the clipboard to (vcard of people) as text
+     do shell script "pbpaste | bzip2 -c > ~/Documents/Contacts\\ Backups/Contacts\\ $(date +%F).vcard.bz2"
+     do shell script "ls -l ~/Documents/Contacts\\ Backups/Contacts\\ $(date +%F).vcard.bz2"
+end tell
