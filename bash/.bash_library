@@ -31,6 +31,8 @@ else
 
     # Turn on color for FreeBSD/Darwin ls
     CLICOLOR=yes
+    # Set FreeBSD/Darwin ls colors to be Solarize like
+    LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
     # Set colors for GNU ls
     inpath dircolors && eval $(dircolors -b $HOME/.dircolorsrc)
