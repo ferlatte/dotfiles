@@ -25,7 +25,9 @@ PS1="[\u@\h \w]\\$ "
 
 # Aliases
 # Note: never use an alias when a shell script will do.
-alias lo='logout'
+alias lo=logout
+alias vi='e --tty'
+alias vim='e --tty'
 
 # Shell Options
 
