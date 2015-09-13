@@ -1,7 +1,36 @@
-#! /usr/bin/osascript
+#! /usr/bin/osascript -l JavaScript
+// -*- mode: JavaScript -*-
 
-tell application "Contacts"
-     set the clipboard to (vcard of people) as text
-     do shell script "pbpaste | bzip2 -c > ~/Documents/Contacts\\ Backups/Contacts\\ $(date +%F).vcard.bz2"
-     do shell script "ls -l ~/Documents/Contacts\\ Backups/Contacts\\ $(date +%F).vcard.bz2"
-end tell
+var getContactsBackupDirectory = function() {
+	var fileManager = $.NSFileManager.defaultManager;
+	var documentsURL = fileManager.URLForDirectoryInDomainAppropriateForURLCreateError(
+		$.NSDocumentDirectory,
+		$.NSUserDomainMask,
+		$(),
+		false,
+		$());
+	return documentsURL.URLByAppendingPathComponent($("Contacts Backups"));
+}
+
+var getContactsBackupURL = function() {
+	var dateFormatter = $.NSDateFormatter.alloc.init;
+	dateFormatter.setDateFormat($("yyyy-MM-dd"));
+	var dateString = dateFormatter.stringFromDate($.NSDate.date);
+	var backupFileName = $.NSString.stringWithFormat($("Contacts %@.vcard"), dateString);
+	return getContactsBackupDirectory().URLByAppendingPathComponent(backupFileName);
+}
+
+var contactsApp = Application("Contacts");
+var vcardString = contactsApp.people.vcard();
+var vcardNSString = $.NSString.stringWithCStringEncoding(vcardString,
+                                                         $.NSUTF8StringEncoding);
+
+var ok = vcardNSString.writeToURLAtomicallyEncodingError(getContactsBackupURL(),
+                                                true,
+                                                $.NSUTF8StringEncoding,
+                                                         $());
+if (ok) {
+    console.log("Backup OK");
+} else {
+    console.log("Backup failed");
+}
