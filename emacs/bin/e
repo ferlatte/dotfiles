@@ -4,8 +4,8 @@ set -eu -o pipefail
 
 e=emacsclient
 
-if [[ -x /Applications/Aquamacs.app/Contents/MacOS/bin/emacsclient ]]; then
-    e=/Applications/Aquamacs.app/Contents/MacOS/bin/emacsclient
+if [[ -x /Applications/Emacs.app/Contents/MacOS/bin/emacsclient ]]; then
+    e=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
 fi
 
 
