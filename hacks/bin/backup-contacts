@@ -20,8 +20,18 @@ var getContactsBackupURL = function() {
 	return getContactsBackupDirectory().URLByAppendingPathComponent(backupFileName);
 }
 
-var contactsApp = Application("Contacts");
+// If you use anything other than the bundle id for the Contacts app,
+// it doesn't work, despite what the documentation says.
+var contactsApp = Application("com.apple.AddressBook");
+contactsApp.includeStandardAdditions = true;
+contactsApp.strictPropertyScope = true;
+contactsApp.strictCommandScope = true;
+contactsApp.strictParameterType = true;
+var contactsAppAlreadyRunning = contactsApp.running();
 var vcardString = contactsApp.people.vcard();
+if (! contactsAppAlreadyRunning) {
+    contactsApp.quit();
+}
 var vcardNSString = $.NSString.stringWithCStringEncoding(vcardString,
                                                          $.NSUTF8StringEncoding);
 
