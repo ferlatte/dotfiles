@@ -1,0 +1,16 @@
+#! /bin/bash
+
+set -eu -o pipefail
+
+# Basically, run a bunch of git pulls.
+
+pushd ~/dotfiles > /dev/null
+git pull
+popd
+
+pushd ~/.bash_it > /dev/null
+git pull
+popd
+
+# EMACS Prelude does it's own git update, followed by a ton of stuff
+e --eval '(prelude-update)'
