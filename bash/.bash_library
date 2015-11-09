@@ -17,7 +17,7 @@ else
 
     # Setup the environment
     set -a
-    
+
     # First, setup the PATH
     if [ -x /usr/libexec/path_helper ]; then
         eval $(/usr/libexec/path_helper -s)
@@ -37,9 +37,11 @@ else
     # Set colors for GNU ls
     inpath dircolors && eval $(dircolors -b $HOME/.dircolorsrc)
 
+    GOPATH=$HOME/src/go
+
     EDITOR=$HOME/bin/e
-    
-    # Default to using less for a pager 
+
+    # Default to using less for a pager
     inpath less && PAGER=less
     # Activate the less filters.
     inpath lesspipe && eval $(lesspipe)
@@ -60,10 +62,10 @@ else
 
     # Nuna malarky
     NUNA_ROOT=$HOME/src/analytics
-    
+
     # End setup of the environment
     set +a
-    
+
     # Setup HOSTFILE from the ssh known_hosts file
     HOSTFILE="$HOME/.bash_hostfile"
     if [ -f $HOME/.ssh/known_hosts ]; then
