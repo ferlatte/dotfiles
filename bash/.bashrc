@@ -48,10 +48,6 @@ shopt -s no_empty_cmd_completion
 # Turn on programmable completion
 shopt -s progcomp
 
-if inpath aws_completer; then
-	complete -C aws_completer aws
-fi
-
 HISTFILESIZE=10000
 HISTSIZE=$HISTFILESIZE
 HISTCONTROL=ignoreboth

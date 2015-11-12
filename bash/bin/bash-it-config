@@ -1,0 +1,12 @@
+#! /bin/bash
+
+source $BASH_IT/bash_it.sh
+
+bash-it enable completion awscli
+bash-it enable completion brew
+bash-it enable completion defaults
+bash-it enable completion git
+bash-it enable completion ssh
+bash-it enable completion vagrant
+bash-it enable plugin aws
+bash-it enable plugin git
