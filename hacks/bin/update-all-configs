@@ -6,6 +6,7 @@ set -eu -o pipefail
 
 pushd ~/dotfiles > /dev/null
 git pull
+stow [a-z]*
 popd
 
 pushd ~/.bash_it > /dev/null
