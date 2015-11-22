@@ -1,0 +1,13 @@
+[user]
+	name = Mark Ferlatte
+	email = ferlatte@cryptio.net
+[push]
+	default = simple
+[color]
+	ui = true
+[core]
+	fsyncObjectFiles = true
+[diff]
+	algorithm = patience
+[fetch]
+	prune = true
