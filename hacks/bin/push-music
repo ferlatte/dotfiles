@@ -1,0 +1,17 @@
+#! /bin/sh
+
+set -e
+
+SRCDIR="/Users/ferlatte/Music/iTunes/iTunes Media/Music/"
+DSTDIR="/Volumes/Data/Music"
+
+if test -O $DSTDIR
+then
+    rsync --archive --delete --verbose "${SRCDIR}" "${DSTDIR}"
+else
+    osascript -e 'tell application "Finder"' \
+	-e 'mount volume "afp://router.local/Data"' \
+	-e 'end tell'
+    rsync --archive --delete --verbose "${SRCDIR}" "${DSTDIR}"
+    diskutil unmount /Volumes/Data
+fi

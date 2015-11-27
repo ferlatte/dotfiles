@@ -1,0 +1,71 @@
+#! /bin/sh
+#
+# Usage: mktmpdir [dir]
+#
+# Create a temporary dir, and return shell code that can be evaled to set
+# TMP and TMPDIR.  Print a warning if tmp creation fails.
+
+LANG=C
+
+me=$(basename $0)
+
+die()
+{
+	echo "$me: $@" 1>&2
+	exit 1
+}
+
+dir=$1
+
+if test -z $dir; then
+	if test -x $(which mktemp); then
+		tmp=$(mktemp -dt ${USER}XXXXXX) || die "mktemp failed: error $?"
+	elif test -d /tmp/$USER; then
+		if test -O /tmp/$USER; then
+			chmod 0700 /tmp/$USER || 
+				die "chmod 0700 /tmp/$USER failed: error $?"
+			tmp=/tmp/$USER
+		else
+			unset tmp
+		fi
+	elif test -f /tmp/$USER; then
+		unset tmp
+	else
+		mkdir -m 0700 /tmp/$USER ||
+			die "mkdir -m 0700 /tmp/$USER failed: error $?"
+		tmp=/tmp/$USER
+	fi
+else
+	if test -d $dir; then
+		if test -O $dir; then
+			chmod 0700 $dir ||
+				die "chmod 0700 $dir failed: error $?"
+	    	tmp=$dir
+		else
+		    unset tmp
+		fi
+	elif test -f $dir; then
+		unset tmp
+	else
+		mkdir -m 0700 $dir ||
+			die "mkdir -m 0700 $dir failed: error $?"
+		tmp=$dir
+    fi
+fi
+
+if [ -z "$tmp" ]; then
+	die "unable to create a safe tmp directory!"
+fi
+if test -z $dir; then
+	case $SHELL in
+		*csh )
+			echo "setenv TMP $tmp;"
+			echo "setenv TMPDIR $tmp;"
+			;;
+		* )
+			echo "TMP=$tmp; export TMP;"
+			echo "TMPDIR=$tmp; export TMPDIR;"
+			;;
+	esac
+fi
+

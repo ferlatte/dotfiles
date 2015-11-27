@@ -1,0 +1,5 @@
+#! /bin/sh
+#
+# Usage: nuke-mbr /dev/sda
+
+dd if=/dev/zero of=$1 bs=512 count=1
