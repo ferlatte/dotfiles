@@ -55,4 +55,7 @@ HISTIGNORE='ls:bg:fg:history'
 HISTTIMEFORMAT='%F %T '
 
 # added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+[[ -f ~/.travis/travis.sh ]] && source ~/.travis/travis.sh
+
+# Nodeenv
+inpath nodenv && eval "$(nodenv init -)"
