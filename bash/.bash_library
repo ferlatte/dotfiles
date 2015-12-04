@@ -15,19 +15,19 @@ else
         type $1 &> /dev/null
     }
 
-    # Setup the environment
-    set -a
-
     # First, setup the PATH
     if [ -x /usr/libexec/path_helper ]; then
         eval $(/usr/libexec/path_helper -s)
     fi
-    PATH=$PATH:/usr/local/sbin
-    PATH=/usr/local/heroku/bin:$PATH
-    PATH=/usr/local/mysql/bin:$PATH
-    PATH=/usr/local/go/bin:$PATH
-    PATH=$HOME/src/arcanist/bin:$PATH
-    PATH=$HOME/bin:$PATH
+    pathmunge /usr/local/sbin after
+    pathmunge /usr/local/heroku/bin
+    pathmunge /usr/local/mysql/bin
+    pathmunge /usr/local/go/bin
+    pathmunge $HOME/src/arcanist/bin
+    pathmunge $HOME/bin
+
+    # Setup the environment
+    set -a
 
     # Turn on color for FreeBSD/Darwin ls
     CLICOLOR=yes
