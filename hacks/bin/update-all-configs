@@ -13,5 +13,8 @@ pushd ~/.bash_it > /dev/null
 git pull
 popd
 
+brew update
+brew upgrade
+
 # EMACS Prelude does it's own git update, followed by a ton of stuff
 e --eval '(prelude-update)'
