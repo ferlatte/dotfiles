@@ -11,3 +11,5 @@
 	algorithm = patience
 [fetch]
 	prune = true
+[transfer]
+	fsckObjects = true
