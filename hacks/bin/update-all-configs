@@ -15,6 +15,7 @@ popd
 
 brew update
 brew upgrade
+brew cleanup
 
 # EMACS Prelude does it's own git update, followed by a ton of stuff
 e --eval '(prelude-update)'
