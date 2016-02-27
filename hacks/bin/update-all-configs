@@ -2,8 +2,6 @@
 
 set -eu -o pipefail
 
-# Basically, run a bunch of git pulls.
-
 pushd ~/dotfiles > /dev/null
 git pull
 stow [a-z]*
@@ -13,9 +11,14 @@ pushd ~/.bash_it > /dev/null
 git pull
 popd
 
+bash-it-configure
+
 brew update
 brew upgrade
 brew cleanup
 
+# If you don't refresh package before updating prelude, prelude-update
+# doesn't appear to reliably work.
+e --eval '(package-refresh-contents)'
 # EMACS Prelude does it's own git update, followed by a ton of stuff
 e --eval '(prelude-update)'
