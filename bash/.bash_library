@@ -66,6 +66,8 @@ else
     # End setup of the environment
     set +a
 
+    pathmunge $RBENV_ROOT/shims
+
     # Setup HOSTFILE from the ssh known_hosts file
     HOSTFILE="$HOME/.bash_hostfile"
     if [ -f $HOME/.ssh/known_hosts ]; then
