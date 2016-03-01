@@ -17,6 +17,8 @@ brew update
 brew upgrade
 brew cleanup
 
+vagrant plugin update
+
 # If you don't refresh package before updating prelude, prelude-update
 # doesn't appear to reliably work.
 e --eval '(package-refresh-contents)'
