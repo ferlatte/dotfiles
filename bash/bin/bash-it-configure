@@ -11,3 +11,4 @@ bash-it enable completion vagrant
 bash-it enable plugin aws
 bash-it enable plugin git
 bash-it enable plugin rbenv
+bash-it enable plugin pyenv
