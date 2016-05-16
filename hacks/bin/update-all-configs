@@ -19,6 +19,11 @@ brew cleanup
 
 vagrant plugin update
 
+open /Applications/Emacs.app
+
+# HACK: Really, we should use e --eval to poll to see when Emacs is ready.
+sleep 10
+
 # If you don't refresh package before updating prelude, prelude-update
 # doesn't appear to reliably work.
 # EMACS Prelude does it's own git update, followed by a ton of stuff
