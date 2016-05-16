@@ -1,16 +1,16 @@
 # .bashrc -*- Mode: Shell-script; -*-
 
 # Don't do anything if we are a non-interactive shell.
-[ -z "$PS1" ] && return
+[[ -z "$PS1" ]] && return
 
 # Load Bash It early so we can over-ride some of the poor choices.
-if [ -d $HOME/.bash_it ]; then
+if [[ -d $HOME/.bash_it ]]; then
     export BASH_IT=$HOME/.bash_it
     source $BASH_IT/bash_it.sh
 fi
 
 # Load the library
-[ -f $HOME/.bash_library ] && . $HOME/.bash_library
+[[ -f $HOME/.bash_library ]] && . $HOME/.bash_library
 
 # Set XTerm and compatibles titlebars
 case $TERM in
@@ -59,3 +59,6 @@ HISTTIMEFORMAT='%F %T '
 
 # Nodeenv
 inpath nodenv && eval "$(nodenv init -)"
+
+# Finally, source a .bashrc.local for site specific crap.
+[[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
