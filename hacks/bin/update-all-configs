@@ -30,3 +30,6 @@ sleep 10
 e --eval \
   '(package-refresh-contents)' \
   '(prelude-update)'
+
+# This can take a long time, but I don't think there's a better way?
+vagrant box update
