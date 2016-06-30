@@ -23,7 +23,6 @@ else
     pathmunge /usr/local/heroku/bin
     pathmunge /usr/local/mysql/bin
     pathmunge /usr/local/go/bin
-    pathmunge $HOME/src/arcanist/bin
     pathmunge $HOME/bin
 
     # Setup the environment
@@ -70,7 +69,7 @@ else
     set +a
 
     pathmunge $RBENV_ROOT/shims
-    pathmunge $PYENV_ROOT/shims
+    pathmunge $PY/ENV_ROOT/shims
 
     # Setup HOSTFILE from the ssh known_hosts file
     HOSTFILE="$HOME/.bash_hostfile"
