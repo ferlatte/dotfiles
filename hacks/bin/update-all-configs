@@ -19,6 +19,16 @@ brew cleanup
 
 vagrant plugin update
 
+# Update arcanist
+if [[ -d $HOME/src/arcanist ]]; then
+    pushd $HOME/src/arcanist
+    git pull
+    popd
+    pushd $HOME/src/libphutil
+    git pull
+    popd
+fi
+
 open /Applications/Emacs.app
 
 # HACK: Really, we should use e --eval to poll to see when Emacs is ready.

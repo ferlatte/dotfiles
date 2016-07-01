@@ -23,6 +23,7 @@ else
     pathmunge /usr/local/heroku/bin
     pathmunge /usr/local/mysql/bin
     pathmunge /usr/local/go/bin
+    pathmunge $HOME/src/arcanist/bin
     pathmunge $HOME/bin
 
     # Setup the environment
