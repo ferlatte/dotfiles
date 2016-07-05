@@ -70,7 +70,7 @@ else
     set +a
 
     pathmunge $RBENV_ROOT/shims
-    pathmunge $PY/ENV_ROOT/shims
+    pathmunge $PYENV_ROOT/shims
 
     # Setup HOSTFILE from the ssh known_hosts file
     HOSTFILE="$HOME/.bash_hostfile"
