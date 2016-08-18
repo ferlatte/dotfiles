@@ -2,6 +2,10 @@
 
 set -eu -o pipefail
 
+function inpath {
+    which $1 > /dev/null
+}
+
 pushd ~/dotfiles > /dev/null
 git pull
 stow [a-z]*
@@ -16,6 +20,10 @@ bash-it-configure
 brew update
 brew upgrade
 brew cleanup
+
+if inpath pyenv; then
+    pyenv rehash
+fi
 
 vagrant plugin update
 
