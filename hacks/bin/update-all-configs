@@ -49,5 +49,11 @@ e --eval \
   '(package-refresh-contents)' \
   '(prelude-update)'
 
-# Print outdated boxes so you can update them later if you desire.
-vagrant box outdated --global
+
+readonly chromeupdater=/Library/Google/GoogleSoftwareUpdate/GoogleSoftwareUpdate.bundle/Contents/Resources/GoogleSoftwareUpdateAgent.app/Contents/MacOS/GoogleSoftwareUpdateAgent
+
+if [[ -x $chromeupdater ]]; then
+    echo -n "Requesting Chrome update... "
+    $chromeupdater -runMode oneshot -userInitiated YES
+    echo "done."
+fi
