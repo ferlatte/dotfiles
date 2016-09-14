@@ -1,0 +1,10 @@
+#! /bin/bash
+
+set -eu -o pipefail
+
+readonly libpkcs11=/Library/OpenSC/lib/opensc-pkcs11.so
+
+if [[ $(ssh-add -l | grep $libpkcs11) ]]; then
+   ssh-add -e $libpkcs11
+fi
+ssh-add -s $libpkcs11
