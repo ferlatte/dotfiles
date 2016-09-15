@@ -7,8 +7,5 @@ readonly libpkcs11=/Library/OpenSC/lib/opensc-pkcs11.so
 if [[ ! -f $libpkcs11 ]]; then
    exit 0
 fi
-
-if [[ $(ssh-add -l | grep $libpkcs11) ]]; then
-   ssh-add -e $libpkcs11
-fi
+ssh-add -e $libpkcs11 > /dev/null 2>&1 && true
 ssh-add -s $libpkcs11

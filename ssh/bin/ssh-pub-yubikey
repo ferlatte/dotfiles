@@ -1,0 +1,7 @@
+#! /bin/bash
+
+set -eu -o pipefail
+
+readonly libpkcs11=/Library/OpenSC/lib/opensc-pkcs11.so
+
+ssh-keygen -D $libpkcs11 -e
