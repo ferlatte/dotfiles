@@ -14,6 +14,9 @@
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+ '(package-selected-packages
+   (quote
+    (git-commit helm helm-core macrostep projectile s with-editor zop-to-char zenburn-theme yari yaml-mode which-key volatile-highlights vkill undo-tree solarized-theme smex smartrep smartparens smart-mode-line slime scss-mode ruby-tools rainbow-mode rainbow-delimiters ov operate-on-number move-text markdown-mode magit json-mode js2-mode inf-ruby imenu-anywhere ido-ubiquitous helm-projectile guru-mode grizzl gotest god-mode go-projectile gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck flx-ido expand-region exec-path-from-shell elisp-slime-nav easy-kill discover-my-major diminish diff-hl csv-mode crux company-go company-auctex company-anaconda cdlatex browse-kill-ring beacon anzu ace-window)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
