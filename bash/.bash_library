@@ -54,12 +54,6 @@ else
     # Default to use ssh for rsync
     RSYNC_RSH=ssh
 
-    # Put rbenv stuff into brew area
-    RBENV_ROOT=/usr/local/var/rbenv
-
-    # Put pyenv stuff into brew area
-    PYENV_ROOT=/usr/local/var/pyenv
-
     # Set the XAUTHORITY so that suid X11 applications work.
     XAUTHORITY=$HOME/.Xauthority
 
