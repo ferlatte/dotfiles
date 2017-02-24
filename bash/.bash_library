@@ -37,6 +37,7 @@ else
     # Set colors for GNU ls
     inpath dircolors && eval $(dircolors -b $HOME/.dircolorsrc)
 
+    GOROOT=/usr/local/opt/go/libexec
     GOPATH=$HOME/src/go
 
     EDITOR=$HOME/bin/e
