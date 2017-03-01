@@ -23,7 +23,7 @@ else
     pathmunge /usr/local/heroku/bin
     pathmunge /usr/local/mysql/bin
     pathmunge /usr/local/go/bin
-    pathmunge $HOME/src/arcanist/bin
+    pathmunge $HOME/src/go/bin
     pathmunge $HOME/bin
 
     # Setup the environment
@@ -38,7 +38,7 @@ else
     inpath dircolors && eval $(dircolors -b $HOME/.dircolorsrc)
 
     GOROOT=/usr/local/opt/go/libexec
-    GOPATH=$HOME/src/go
+    GOPATH=$HOME/src/go:$HOME/src/Truss-PQVP/server
 
     EDITOR=$HOME/bin/e
 

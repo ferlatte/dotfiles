@@ -25,5 +25,10 @@
       (setq-local flycheck-javascript-eslint-executable eslint))))
 (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-copy-envs '("GOPATH"))
+  (exec-path-from-shell-initialize))
+
 (provide 'init)
 ;;; init.el ends here
