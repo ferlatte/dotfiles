@@ -27,6 +27,11 @@ fi
 
 vagrant plugin update
 
+# These end up in ~/src/go/bin
+go get -u github.com/nsf/gocode
+go get -u github.com/golang/lint/golint
+go get -u github.com/mattes/migrate
+
 # Update arcanist
 if [[ -d $HOME/src/arcanist ]]; then
     pushd $HOME/src/arcanist

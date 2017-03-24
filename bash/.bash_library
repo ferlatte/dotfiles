@@ -15,10 +15,6 @@ else
         type $1 &> /dev/null
     }
 
-    # First, setup the PATH
-    if [ -x /usr/libexec/path_helper ]; then
-        eval $(/usr/libexec/path_helper -s)
-    fi
     pathmunge /usr/local/sbin after
     pathmunge /usr/local/heroku/bin
     pathmunge /usr/local/mysql/bin
