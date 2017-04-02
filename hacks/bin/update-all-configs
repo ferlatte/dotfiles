@@ -31,6 +31,7 @@ vagrant plugin update
 go get -u github.com/nsf/gocode
 go get -u github.com/golang/lint/golint
 go get -u github.com/mattes/migrate
+go get -u github.com/mvdan/sh/cmd/shfmt
 
 # Update arcanist
 if [[ -d $HOME/src/arcanist ]]; then
