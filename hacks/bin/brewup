@@ -1,8 +1,0 @@
-#! /bin/bash
-
-set -eu -o pipefail
-
-brew update
-brew upgrade --cleanup
-brew cleanup -s
-brew prune

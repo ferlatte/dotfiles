@@ -1,0 +1,9 @@
+#! /bin/bash
+
+set -eu -o pipefail
+
+pushd $HOME > /dev/null
+brew update
+brew bundle
+brew bundle cleanup
+popd > /dev/null
