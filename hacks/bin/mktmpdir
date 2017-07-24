@@ -22,7 +22,7 @@ if test -z $dir; then
 		tmp=$(mktemp -dt ${USER}XXXXXX) || die "mktemp failed: error $?"
 	elif test -d /tmp/$USER; then
 		if test -O /tmp/$USER; then
-			chmod 0700 /tmp/$USER || 
+			chmod 0700 /tmp/$USER ||
 				die "chmod 0700 /tmp/$USER failed: error $?"
 			tmp=/tmp/$USER
 		else
