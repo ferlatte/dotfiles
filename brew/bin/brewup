@@ -2,8 +2,9 @@
 
 set -eu -o pipefail
 
-pushd $HOME > /dev/null
+pushd "${HOME}" > /dev/null
 brew update
+brew-update-casks
 brew bundle
 brew bundle cleanup
 popd > /dev/null
