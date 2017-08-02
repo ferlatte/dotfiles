@@ -4,7 +4,8 @@ set -eu -o pipefail
 
 pushd "${HOME}" > /dev/null
 brew update
-brew-update-casks
+brew-upgrade-casks
 brew bundle
-brew bundle cleanup
+# Apparently in brew land, --force means "Actually do what I asked you to do"
+brew bundle cleanup --force
 popd > /dev/null
