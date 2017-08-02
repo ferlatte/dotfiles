@@ -10,6 +10,7 @@ bash-it enable completion docker-compose
 bash-it enable completion docker-machine
 bash-it enable completion git
 bash-it enable completion ssh
+bash-it enable completion terraform
 bash-it enable completion vagrant
 bash-it enable plugin aws
 bash-it enable plugin base
