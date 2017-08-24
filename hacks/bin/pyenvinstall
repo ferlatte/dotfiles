@@ -1,0 +1,7 @@
+#! /bin/bash
+
+# Need to do a bunch of gymnastics to make pyenv install work on macOS
+
+set -eu -o pipefail
+
+CFLAGS="-O2 -I$(xcrun --show-sdk-path)/usr/include" pyenv install "$@"
