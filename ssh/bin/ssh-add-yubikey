@@ -2,8 +2,8 @@
 
 set -eu -o pipefail
 
-readonly libpkcs11=/Library/OpenSC/lib/opensc-pkcs11.so
-
+# readonly libpkcs11=/Library/OpenSC/lib/opensc-pkcs11.so
+readonly libpkcs11=/usr/local/lib/opensc-pkcs11.so
 if [[ ! -f $libpkcs11 ]]; then
    exit 0
 fi
