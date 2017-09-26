@@ -35,4 +35,5 @@ brew 'xctool'
 brew 'xz'
 brew 'yarn'
 brew 'arcanist'
+brew 'jq'
 
