@@ -1,0 +1,6 @@
+#! /bin/bash
+#
+
+aws sts get-session-token \
+    --serial-number arn:aws:iam::254566265011:mfa/mferlatte \
+    --token-code $1
