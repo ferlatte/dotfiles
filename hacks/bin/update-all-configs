@@ -28,11 +28,9 @@ if inpath vagrant; then
 fi
 
 # These end up in ~/src/go/bin
-# go and Cylance don't get along: https://github.com/golang/go/issues/18171
-# figure out what to do about this later.
-# go get -u github.com/nsf/gocode
-# go get -u github.com/golang/lint/golint
-# go get -u mvdan.cc/sh/cmd/shfmt
+go get -u github.com/nsf/gocode
+go get -u github.com/golang/lint/golint
+go get -u mvdan.cc/sh/cmd/shfmt
 
 # Update arcanist
 if [[ -d $HOME/src/arcanist ]]; then
