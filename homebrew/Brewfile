@@ -36,4 +36,5 @@ brew 'xz'
 brew 'yarn'
 brew 'arcanist'
 brew 'jq'
+brew 'dep'
 
