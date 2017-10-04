@@ -1,11 +1,16 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 set -eu -o pipefail
 
+# Reset PATH because pyenv and friends confuse brew.
+export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+
 pushd "${HOME}" > /dev/null
+brew doctor
 brew update
 brew-upgrade-casks
 brew bundle
 # Apparently in brew land, --force means "Actually do what I asked you to do"
 brew bundle cleanup --force
+brew cleanup
 popd > /dev/null
