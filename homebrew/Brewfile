@@ -37,4 +37,5 @@ brew 'yarn'
 brew 'arcanist'
 brew 'jq'
 brew 'dep'
+brew 'python3'
 
