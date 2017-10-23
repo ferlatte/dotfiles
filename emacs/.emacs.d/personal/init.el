@@ -25,6 +25,12 @@
       (setq-local flycheck-javascript-eslint-executable eslint))))
 (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
+(add-hook 'markdown-mode-hook 'visual-line-mode)
+(defun my/markdown-config ()
+  (local-set-key (kbd "M-q") 'ignore)
+  (whitespace-mode -1))
+(add-hook 'markdown-mode-hook 'my/markdown-config)
+
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-copy-envs '("GOPATH"))
