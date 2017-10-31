@@ -1,0 +1,18 @@
+#! /bin/bash
+
+set -eu -o pipefail
+
+readonly bucket=$1
+readonly now=$(date +%s)
+readonly region=us-west-2
+
+aws --output=text cloudwatch get-metric-statistics \
+    --namespace AWS/S3 \
+    --start-time "$(echo "$now - 86400" | bc)" \
+    --end-time "$now" \
+    --period 86400 \
+    --statistics Average \
+    --region "$region" \
+    --metric-name BucketSizeBytes \
+    --dimensions Name=BucketName,Value="$bucket" Name=StorageType,Value=StandardStorage \
+    --query 'Datapoints[*].{Bytes:Average}'
