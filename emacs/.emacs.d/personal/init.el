@@ -3,6 +3,24 @@
 ;;; Code:
 (server-start)
 
+(defvar my/packages
+  '(flycheck-gometalinter solarized-theme)
+  "A list of packages to ensure are installed.")
+
+(defun my/packages-installed-p ()
+  (loop for p in my/packages
+        when (not (package-installed-p p)) do (return nil)
+        finally (return t)))
+
+(unless (my/packages-installed-p)
+  (message "%s" "Refreshing my package database...")
+  (package-refresh-contents)
+  (message "%s" " done.")
+  ;; install the missing packages
+  (dolist (p my/packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
+
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 
 (defvar anaconda-mode-port)
@@ -12,6 +30,17 @@
 (setq anaconda-mode-port 9000)
 (setq js2-basic-offset 2)
 (setq js2-strict-trailing-comma-warning nil)
+
+(require 'flycheck-gometalinter)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-gometalinter-setup))
+
+;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
+(setq flycheck-gometalinter-vendor t)
+;; use in tests files
+(setq flycheck-gometalinter-test t)
+;; Set different deadline (default: 5s)
+(setq flycheck-gometalinter-deadline "30s")
 
 (defun my/use-eslint-from-node-modules ()
   "Use local eslint in node_modules instead of global install."
