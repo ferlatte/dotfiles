@@ -39,8 +39,11 @@
 (setq flycheck-gometalinter-vendor t)
 ;; use in tests files
 (setq flycheck-gometalinter-test t)
+;; Only use fast linters
+(setq flycheck-gometalinter-fast t)
 ;; Set different deadline (default: 5s)
 (setq flycheck-gometalinter-deadline "30s")
+(setq flycheck-gometalinter-disable-linters (list "gocyclo"))
 
 (defun my/use-eslint-from-node-modules ()
   "Use local eslint in node_modules instead of global install."

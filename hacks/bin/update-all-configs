@@ -32,6 +32,7 @@ go get -u github.com/nsf/gocode
 go get -u github.com/golang/lint/golint
 go get -u mvdan.cc/sh/cmd/shfmt
 go get -u github.com/alecthomas/gometalinter
+gometalinter --install
 
 # Update arcanist
 if [[ -d $HOME/src/arcanist ]]; then
