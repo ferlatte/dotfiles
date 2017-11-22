@@ -13,7 +13,7 @@ fi
 # This absurd construct is the best way to determine if a shell variable
 # is bound or not.
 if [[ ! -z "${TERM_SESSION_ID-}" ]]; then
-    emacsclient_args=--create-frame
+    emacsclient_args="--create-frame --no-wait"
 else
     emacsclient_args=--tty
 fi

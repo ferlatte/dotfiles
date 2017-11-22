@@ -3,7 +3,7 @@
 set -eu -o pipefail
 
 function inpath {
-    which $1 > /dev/null
+    which "$1" > /dev/null
 }
 
 pushd ~/dotfiles > /dev/null
@@ -36,26 +36,28 @@ gometalinter --install
 
 # Update arcanist
 if [[ -d $HOME/src/arcanist ]]; then
-    pushd $HOME/src/arcanist
+    pushd "${HOME}/src/arcanist"
     git pull
     popd
-    pushd $HOME/src/libphutil
+    pushd "${HOME}src/libphutil"
     git pull
     popd
 fi
 
 open /Applications/Emacs.app
 
-# HACK: Really, we should use e --eval to poll to see when Emacs is ready.
-sleep 10
-
 # If you don't refresh package before updating prelude, prelude-update
 # doesn't appear to reliably work.
 # EMACS Prelude does it's own git update, followed by a ton of stuff
-e --eval \
-  '(package-refresh-contents)' \
-  '(prelude-update)'
-
+# Poll until emacs is ready.
+n=0
+until [[ $n -ge 60 ]]; do
+    e --eval \
+      '(package-refresh-contents)' \
+      '(prelude-update)' 2> /dev/null && break
+    n=$((n+1))
+    sleep 1
+done
 
 readonly chromeupdater=/Library/Google/GoogleSoftwareUpdate/GoogleSoftwareUpdate.bundle/Contents/Resources/GoogleSoftwareUpdateAgent.app/Contents/MacOS/GoogleSoftwareUpdateAgent
 
