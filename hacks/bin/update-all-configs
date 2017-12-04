@@ -58,11 +58,3 @@ until [[ $n -ge 60 ]]; do
     n=$((n+1))
     sleep 1
 done
-
-readonly chromeupdater=/Library/Google/GoogleSoftwareUpdate/GoogleSoftwareUpdate.bundle/Contents/Resources/GoogleSoftwareUpdateAgent.app/Contents/MacOS/GoogleSoftwareUpdateAgent
-
-if [[ -x $chromeupdater ]]; then
-    echo -n "Requesting Chrome update... "
-    $chromeupdater -runMode oneshot -userInitiated YES
-    echo "done."
-fi
