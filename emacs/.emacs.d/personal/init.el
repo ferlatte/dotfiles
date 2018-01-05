@@ -4,7 +4,7 @@
 (server-start)
 
 (defvar my/packages
-  '(flycheck-gometalinter solarized-theme)
+  '(flycheck-gometalinter solarized-theme toml-mode)
   "A list of packages to ensure are installed.")
 
 (defun my/packages-installed-p ()
