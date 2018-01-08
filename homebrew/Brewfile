@@ -41,4 +41,5 @@ brew 'arcanist'
 brew 'jq'
 brew 'dep'
 brew 'python3'
+brew 'hub'
 
