@@ -6,10 +6,12 @@
 # Load Bash It early so we can over-ride some of the poor choices.
 if [[ -d $HOME/.bash_it ]]; then
     export BASH_IT=$HOME/.bash_it
+    # shellcheck source=/dev/null
     source $BASH_IT/bash_it.sh
 fi
 
 # Load the library
+# shellcheck source=.bash_library
 [[ -f $HOME/.bash_library ]] && . $HOME/.bash_library
 
 # Set XTerm and compatibles titlebars
@@ -21,7 +23,7 @@ case $TERM in
 		;;
 esac
 
-PS1="[\u@\h \w]\\$ "
+PS1="[\\u@\\h \\w]\\$ "
 
 # Aliases
 # Note: never use an alias when a shell script will do.
@@ -54,11 +56,9 @@ HISTCONTROL=ignoreboth
 HISTIGNORE='ls:bg:fg:history'
 HISTTIMEFORMAT='%F %T '
 
-# added by travis gem
-[[ -f ~/.travis/travis.sh ]] && source ~/.travis/travis.sh
-
 # Nodeenv
 inpath nodenv && eval "$(nodenv init -)"
 
 # Finally, source a .bashrc.local for site specific crap.
+# shellcheck source=/dev/null
 [[ -f ~/.bashrc.local ]] && source ~/.bashrc.local

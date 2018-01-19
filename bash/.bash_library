@@ -12,64 +12,58 @@ else
     # This checks for given programs on the system
     inpath()
     {
-        type $1 &> /dev/null
+        type "$1" &> /dev/null
     }
 
     pathmunge /usr/local/sbin after
     pathmunge /usr/local/heroku/bin
     pathmunge /usr/local/mysql/bin
     pathmunge /usr/local/go/bin
-    pathmunge $HOME/src/go/bin
-    pathmunge $HOME/bin
-
-    # Setup the environment
-    set -a
+    pathmunge "$HOME/src/go/bin"
+    pathmunge "$HOME/bin"
 
     # Turn on color for FreeBSD/Darwin ls
-    CLICOLOR=yes
+    export CLICOLOR=yes
     # Set FreeBSD/Darwin ls colors to be Solarize like
-    LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+    export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
     # Set colors for GNU ls
-    inpath dircolors && eval $(dircolors -b $HOME/.dircolorsrc)
+    inpath dircolors && eval "$(dircolors -b "$HOME/.dircolorsrc")"
 
-    GOROOT=/usr/local/opt/go/libexec
-    GOPATH=$HOME/src/go:$HOME/src/Truss-PQVP/server
+    export GOROOT=/usr/local/opt/go/libexec
+    export GOPATH=$HOME/src/go:$HOME/src/Truss-PQVP/server
 
-    EDITOR=$HOME/bin/e
+    export EDITOR="$HOME/bin/e -w"
 
     # Default to using less for a pager
-    inpath less && PAGER=less
+    inpath less && export PAGER=less
     # Activate the less filters.
-    inpath lesspipe && eval $(lesspipe)
+    inpath lesspipe && eval "$(lesspipe)"
 
     # Setup UTF-8 locale
     # Note: in theory, checking for present locales is done via the `locale'
     # command; however, I can't be bothered.
-    LANG=en_US.UTF-8
+    export LANG=en_US.UTF-8
 
     # Default to use ssh for rsync
-    RSYNC_RSH=ssh
+    export RSYNC_RSH=ssh
 
     # Set the XAUTHORITY so that suid X11 applications work.
-    XAUTHORITY=$HOME/.Xauthority
+    export XAUTHORITY=$HOME/.Xauthority
 
     # Nuna malarky
-    NUNA_ROOT=$HOME/src/analytics
+    export NUNA_ROOT=$HOME/src/analytics
 
-    # End setup of the environment
-    set +a
-
-    pathmunge $RBENV_ROOT/shims
-    pathmunge $PYENV_ROOT/shims
+    pathmunge "$RBENV_ROOT/shims"
+    pathmunge "$PYENV_ROOT/shims"
 
     # Setup HOSTFILE from the ssh known_hosts file
     HOSTFILE="$HOME/.bash_hostfile"
-    if [ -f $HOME/.ssh/known_hosts ]; then
-        cut -f 1 -d ' ' $HOME/.ssh/known_hosts |
+    if [ -f "$HOME/.ssh/known_hosts" ]; then
+        cut -f 1 -d ' ' "$HOME/.ssh/known_hosts" |
             tr ',' '\n' |
             sort -u |
-            egrep '[[:alpha:]]+\.'  > $HOSTFILE
+            grep -E '[[:alpha:]]+\.'  > "$HOSTFILE"
     fi
 
     BASH_LIBRARY="yes"

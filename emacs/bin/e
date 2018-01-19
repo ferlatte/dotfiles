@@ -2,6 +2,19 @@
 
 set -eu -o pipefail
 
+emacsclient_args_wait="--no-wait"
+while getopts "w" option; do
+    case "$option" in
+        w)
+            emacsclient_args_wait=""
+            shift
+            ;;
+        *)
+            echo "Incorrect options"
+            exit 1
+    esac
+done
+
 e=emacsclient
 
 if [[ -x /Applications/Emacs.app/Contents/MacOS/bin/emacsclient ]]; then
@@ -13,9 +26,9 @@ fi
 # This absurd construct is the best way to determine if a shell variable
 # is bound or not.
 if [[ ! -z "${TERM_SESSION_ID-}" ]]; then
-    emacsclient_args="--create-frame --no-wait"
+    emacsclient_args=--create-frame
 else
     emacsclient_args=--tty
 fi
 
-exec $e $emacsclient_args "$@"
+exec $e $emacsclient_args $emacsclient_args_wait "$@"

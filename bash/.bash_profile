@@ -1,4 +1,5 @@
 # .bash_profile -*- Mode: Shell-script; -*-
 
 # Load .bashrc at login also.
-[[ -f $HOME/.bashrc ]] && source $HOME/.bashrc
+# shellcheck source=.bashrc
+[[ -f "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
