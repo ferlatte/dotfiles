@@ -3,15 +3,14 @@
 set -eu -o pipefail
 
 emacsclient_args_wait="--no-wait"
-while getopts "w" option; do
+while getopts ":w" option; do
     case "$option" in
         w)
             emacsclient_args_wait=""
             shift
             ;;
         *)
-            echo "Incorrect options"
-            exit 1
+            ;;
     esac
 done
 
