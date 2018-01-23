@@ -8,9 +8,8 @@ export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sb
 pushd "${HOME}" > /dev/null
 brew doctor
 brew update
-# Buggy, not sure why. Disabling until fixed.
-# brew-upgrade-casks
 brew bundle
+brew-upgrade-casks
 # Apparently in brew land, --force means "Actually do what I asked you to do"
 brew bundle cleanup --force
 brew cleanup
