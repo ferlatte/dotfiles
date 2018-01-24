@@ -4,6 +4,6 @@ set -eu -o pipefail
 
 pushd $HOME/.ssh > /dev/null
 ssh-add -D
-ssh-add *.pem
+ssh-add *.key
 
 ssh-add-yubikey
