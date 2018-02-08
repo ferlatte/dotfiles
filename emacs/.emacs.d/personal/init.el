@@ -68,5 +68,11 @@
   (exec-path-from-shell-copy-envs '("GOPATH"))
   (exec-path-from-shell-initialize))
 
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-markup-indent-offset 2)
+  )
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+
 (provide 'init)
 ;;; init.el ends here

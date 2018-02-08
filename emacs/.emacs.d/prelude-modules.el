@@ -33,6 +33,6 @@
 (require 'prelude-scheme)
 (require 'prelude-shell)
 (require 'prelude-scss)
-;; (require 'prelude-web) ;; Emacs mode for web templates
+(require 'prelude-web) ;; Emacs mode for web templates
 (require 'prelude-xml)
 (require 'prelude-yaml)

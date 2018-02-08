@@ -2,6 +2,8 @@
 
 source $BASH_IT/bash_it.sh
 
+bash-it update
+
 bash-it enable completion awscli
 bash-it enable completion brew
 bash-it enable completion defaults
@@ -17,3 +19,4 @@ bash-it enable plugin base
 bash-it enable plugin git
 bash-it enable plugin rbenv
 bash-it enable plugin pyenv
+bash-it enable plugin nvm
