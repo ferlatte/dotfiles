@@ -1,7 +1,0 @@
-#! /bin/bash
-
-set -eu -o pipefail
-
-pushd $HOME/.ssh > /dev/null
-ssh-add -K *.pem
-
