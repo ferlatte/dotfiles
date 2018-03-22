@@ -74,5 +74,7 @@
   )
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
+(add-to-list 'auto-mode-alist '("\\.jsx\\'"    . js2-jsx-mode))
+
 (provide 'init)
 ;;; init.el ends here
