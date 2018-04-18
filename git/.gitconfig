@@ -18,3 +18,5 @@
 	unstage = reset HEAD
 	# go back before last commit, with files in uncommitted state
 	uncommit = reset --soft HEAD^     
+	praise = blame
+	
