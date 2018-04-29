@@ -10,6 +10,7 @@ brew doctor
 brew update
 brew bundle
 brew-upgrade-casks
+brew upgrade
 # Apparently in brew land, --force means "Actually do what I asked you to do"
 brew bundle cleanup --force
 brew cleanup
