@@ -30,17 +30,4 @@ go get -u mvdan.cc/sh/cmd/shfmt
 go get -u github.com/alecthomas/gometalinter
 gometalinter --install
 
-open /Applications/Emacs.app
-
-# If you don't refresh package before updating prelude, prelude-update
-# doesn't appear to reliably work.
-# EMACS Prelude does it's own git update, followed by a ton of stuff
-# Poll until emacs is ready.
-n=0
-until [[ $n -ge 60 ]]; do
-    e --eval \
-      '(package-refresh-contents)' \
-      '(prelude-update)' 2> /dev/null && break
-    n=$((n+1))
-    sleep 1
-done
+emacsup

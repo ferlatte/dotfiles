@@ -1,0 +1,36 @@
+#! /bin/bash
+
+set -eu -o pipefail
+
+readonly emacsapp=/Applications/Emacs.app
+readonly emacsclient="${emacsapp}/Contents/MacOS/bin/emacsclient"
+
+open -g "${emacsapp}"
+
+# Update EMACS Prelude
+pushd "$HOME/.emacs.d" || exit 1
+git pull
+popd || exit 1
+
+# Update the package index.
+# Poll until emacs is ready.
+n=0
+until [[ $n -ge 60 ]]; do
+    $emacsclient --eval \
+                 '(package-refresh-contents)' && break
+    echo "Sleeping..."
+    sleep 1
+    n=$((n+1))
+done
+
+# Update all packages.
+n=0
+until [[ $n -ge 60 ]]; do
+    $emacsclient --eval \
+                 '(auto-package-update-now)' && break
+    echo 'Sleeping...'
+    sleep 1
+    n=$((n+1))
+done
+
+echo "Please restart EMACS to activate EMACS Prelude updates."
