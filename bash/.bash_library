@@ -51,8 +51,10 @@ else
     # Set the XAUTHORITY so that suid X11 applications work.
     export XAUTHORITY=$HOME/.Xauthority
 
-    # Nuna malarky
-    export NUNA_ROOT=$HOME/src/analytics
+    # Caseflow malarky.
+    export POSTGRES_HOST=localhost
+    export POSTGRES_USER=postgres
+    export POSTGRES_PASSWORD=postgres
 
     pathmunge "$RBENV_ROOT/shims"
     pathmunge "$PYENV_ROOT/shims"
