@@ -1,6 +1,7 @@
 [user]
 	name = Mark Ferlatte
 	email = mark@truss.works
+	signingkey = E049969483F8E5B3
 [push]
 	default = simple
 [color]
@@ -23,3 +24,5 @@
 	
 [rebase]
 	autoStash = true
+[commit]
+	gpgsign = true
