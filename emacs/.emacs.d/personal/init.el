@@ -4,7 +4,11 @@
 (server-start)
 
 (defvar my/packages
-  '(auto-package-update flycheck-gometalinter solarized-theme toml-mode)
+  '(auto-package-update
+    flycheck-gometalinter
+    solarized-theme
+    toml-mode
+    ggtags)
   "A list of packages to ensure are installed.")
 
 (defun my/packages-installed-p ()
@@ -75,6 +79,10 @@
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.jsx\\'"    . js2-jsx-mode))
+
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (provide 'init)
 ;;; init.el ends here
