@@ -55,5 +55,4 @@ brew 'direnv'
 brew 'instantclient-basic'
 brew 'instantclient-sdk'
 brew 'ctags'
-brew 'global'
-
+brew 'global', args: ["with-ctags", "with-pygments"]
