@@ -16,9 +16,6 @@ else
     }
 
     pathmunge /usr/local/sbin after
-    pathmunge /usr/local/heroku/bin
-    pathmunge /usr/local/mysql/bin
-    pathmunge /usr/local/go/bin
     pathmunge "$HOME/src/go/bin"
     pathmunge "$HOME/bin"
 
@@ -31,7 +28,7 @@ else
     inpath dircolors && eval "$(dircolors -b "$HOME/.dircolorsrc")"
 
     export GOROOT=/usr/local/opt/go/libexec
-    export GOPATH=$HOME/src/go:$HOME/src/Truss-PQVP/server
+    export GOPATH=$HOME/src/go
 
     export EDITOR="$HOME/bin/e -w"
 
@@ -50,11 +47,6 @@ else
 
     # Set the XAUTHORITY so that suid X11 applications work.
     export XAUTHORITY=$HOME/.Xauthority
-
-    # Caseflow malarky.
-    export POSTGRES_HOST=localhost
-    export POSTGRES_USER=postgres
-    export POSTGRES_PASSWORD=postgres
 
     pathmunge "$RBENV_ROOT/shims"
     pathmunge "$PYENV_ROOT/shims"
