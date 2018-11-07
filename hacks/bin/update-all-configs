@@ -3,7 +3,7 @@
 set -eu -o pipefail
 
 function inpath {
-    which "$1" > /dev/null
+    command -v "$1" > /dev/null
 }
 
 pushd ~/dotfiles > /dev/null
@@ -25,7 +25,6 @@ fi
 
 # These end up in ~/src/go/bin
 go get -u github.com/nsf/gocode
-go get -u github.com/golang/lint/golint
 go get -u mvdan.cc/sh/cmd/shfmt
 go get -u github.com/alecthomas/gometalinter
 gometalinter --install
