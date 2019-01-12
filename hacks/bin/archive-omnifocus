@@ -1,0 +1,6 @@
+#! /bin/sh
+
+readonly localarchive=~/Library/Containers/com.omnigroup.OmniFocus3.MacAppStore/Data/Library/Application\ Support/OmniFocus/Archive.ofocus-archive/
+readonly savedarchive=~/Documents/Archive.ofocus-archive
+
+rsync -avP --delete "$localarchive" "$savedarchive"
