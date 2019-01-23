@@ -1,0 +1,26 @@
+#! /usr/bin/osascript -l JavaScript
+// -*- mode: JavaScript -*-
+
+// If you use anything other than the bundle id for the Contacts app,
+// it doesn't work, despite what the documentation says.
+var contactsApp = Application("com.apple.AddressBook");
+contactsApp.includeStandardAdditions = true;
+contactsApp.strictPropertyScope = true;
+contactsApp.strictCommandScope = true;
+contactsApp.strictParameterType = true;
+var contactsAppAlreadyRunning = contactsApp.running();
+
+console.log("First,Last,Email")
+
+for (let p of contactsApp.people()) {
+    let firstName = p.firstName();
+    let lastName = p.lastName();
+    for (let email of p.emails()) {
+        emailString = email.value();
+        console.log(firstName + "," + lastName + "," + emailString)
+    }
+}
+
+if (! contactsAppAlreadyRunning) {
+    contactsApp.quit();
+}
