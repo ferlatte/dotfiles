@@ -19,10 +19,14 @@
 	# remove files from index (tracking)
 	unstage = reset HEAD
 	# go back before last commit, with files in uncommitted state
-	uncommit = reset --soft HEAD^     
+	uncommit = reset --soft HEAD^
 	praise = blame
-	
+
 [rebase]
 	autoStash = true
 [commit]
-	gpgsign = true
+	gpgSign = true
+[gpg]
+	program = /usr/local/bin/krgpg
+[tag]
+	forceSignAnnotated = true

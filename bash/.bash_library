@@ -37,6 +37,9 @@ else
     # Activate the less filters.
     inpath lesspipe && eval "$(lesspipe)"
 
+    # Krypton needs this; I don't know why.
+    export GPG_TTY=$(tty)
+
     # Setup UTF-8 locale
     # Note: in theory, checking for present locales is done via the `locale'
     # command; however, I can't be bothered.

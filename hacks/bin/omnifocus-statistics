@@ -1,0 +1,22 @@
+#! /usr/bin/osascript -l JavaScript
+// -*- mode: JavaScript -*-
+
+let ofApp = Application("com.omnigroup.OmniFocus3.MacAppStore");
+if (! ofApp) {
+  console.log("Couldn't find OmniFocus 3");
+}
+
+ofApp.includeStandardAdditions = true;
+ofApp.strictPropertyScope = true;
+ofApp.strictCommandScope = true;
+ofApp.strictParameterType = true;
+let ofAppAlreadyRunning = ofApp.running();
+
+let projects = ofApp.defaultDocument.flattenedProjects
+for (let p of projects) {
+  console.log(p.id)
+}
+
+if (! ofAppAlreadyRunning) {
+    ofApp.quit();
+}

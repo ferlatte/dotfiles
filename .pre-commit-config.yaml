@@ -7,6 +7,9 @@ repos:
   - id: check-executables-have-shebangs
   - id: check-merge-conflict
   - id: check-yaml
-  - id: detect-aws-credentials
   - id: detect-private-key
   - id: trailing-whitespace
+-   repo: git://github.com/detailyang/pre-commit-shell
+    sha: 1.0.2
+    hooks:
+    -   id: shell-lint
