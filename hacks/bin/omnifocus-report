@@ -3,12 +3,11 @@
 
 
 function run(argv) {
-  let ofApp = Application("com.omnigroup.OmniFocus3.MacAppStore");
+  let ofApp = Application("OmniFocus");
   if (! ofApp) {
     console.log("Couldn't find OmniFocus 3");
     return
   }
-
   ofApp.includeStandardAdditions = true;
   ofApp.strictPropertyScope = true;
   ofApp.strictCommandScope = true;
@@ -24,7 +23,6 @@ function run(argv) {
       activeProjects += 1;
     }
   }
-  console.log("ActiveProjects: " + activeProjects + " TotalProjects: " + totalProjects);
   tasks = doc.flattenedTasks()
   let totalTasks = 0
   let activeTasks = 0
@@ -34,7 +32,8 @@ function run(argv) {
       activeTasks += 1;
     }
   }
-  console.log("ActiveTasks: " + activeTasks + " TotalTasks: " + totalTasks);
+  let now = new Date();
+  console.log(now.toLocaleDateString() + ", " + activeProjects + ", " + activeTasks)
   if (! ofAppAlreadyRunning) {
     ofApp.quit();
   }
