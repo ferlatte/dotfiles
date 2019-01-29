@@ -1,22 +1,41 @@
 #! /usr/bin/osascript -l JavaScript
 // -*- mode: JavaScript -*-
 
-let ofApp = Application("com.omnigroup.OmniFocus3.MacAppStore");
-if (! ofApp) {
-  console.log("Couldn't find OmniFocus 3");
-}
 
-ofApp.includeStandardAdditions = true;
-ofApp.strictPropertyScope = true;
-ofApp.strictCommandScope = true;
-ofApp.strictParameterType = true;
-let ofAppAlreadyRunning = ofApp.running();
+function run(argv) {
+  let ofApp = Application("com.omnigroup.OmniFocus3.MacAppStore");
+  if (! ofApp) {
+    console.log("Couldn't find OmniFocus 3");
+    return
+  }
 
-let projects = ofApp.defaultDocument.flattenedProjects
-for (let p of projects) {
-  console.log(p.id)
-}
-
-if (! ofAppAlreadyRunning) {
+  ofApp.includeStandardAdditions = true;
+  ofApp.strictPropertyScope = true;
+  ofApp.strictCommandScope = true;
+  ofApp.strictParameterType = true;
+  let ofAppAlreadyRunning = ofApp.running();
+  let doc = ofApp.defaultDocument();
+  projects = doc.flattenedProjects();
+  let totalProjects = 0
+  let activeProjects = 0
+  for (let p of projects) {
+    totalProjects += 1;
+    if (! p.completed()) {
+      activeProjects += 1;
+    }
+  }
+  console.log("ActiveProjects: " + activeProjects + " TotalProjects: " + totalProjects);
+  tasks = doc.flattenedTasks()
+  let totalTasks = 0
+  let activeTasks = 0
+  for (let t of tasks) {
+    totalTasks += 1;
+    if (! t.completed()) {
+      activeTasks += 1;
+    }
+  }
+  console.log("ActiveTasks: " + activeTasks + " TotalTasks: " + totalTasks);
+  if (! ofAppAlreadyRunning) {
     ofApp.quit();
+  }
 }
