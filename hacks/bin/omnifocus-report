@@ -15,12 +15,21 @@ function run(argv) {
   let ofAppAlreadyRunning = ofApp.running();
   let doc = ofApp.defaultDocument();
   projects = doc.flattenedProjects();
-  let totalProjects = 0
-  let activeProjects = 0
+  let totalProjects = 0;
+  let activeProjects = 0;
+  let completedProjects = 0;
+  let oldestProjectDate = new Date();
   for (let p of projects) {
     totalProjects += 1;
-    if (! p.completed()) {
+    if (p.completed()) {
+      completedProjects += 1;
+    } else {
       activeProjects += 1;
+    }
+    if (! p.singletonActionHolder()) {
+      if (oldestProjectDate > p.creationDate()) {
+        oldestProjectDate = p.creationDate();
+      }
     }
   }
   tasks = doc.flattenedTasks()
@@ -34,6 +43,8 @@ function run(argv) {
   }
   let now = new Date();
   console.log(now.toLocaleDateString() + ", " + activeProjects + ", " + activeTasks)
+  console.log("completedProjects: " + completedProjects + " oldestProject: "
+              + oldestProjectDate);
   if (! ofAppAlreadyRunning) {
     ofApp.quit();
   }
