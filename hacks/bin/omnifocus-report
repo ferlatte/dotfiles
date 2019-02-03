@@ -13,6 +13,15 @@ function daysFromInterval(i) {
   return Math.round(i / 86400)
 }
 
+// Calculate churn rate, as defined here:
+// http://calnewport.com/blog/2007/11/08/are-you-effective-or-just-busy-calculate-your-churn-rate-to-find-out/
+function churnRate(completedProjects, oldestProjectDate) {
+  let interval = timeIntervalSinceNow(oldestProjectDate);
+  let intervalDays = daysFromInterval(interval);
+  let churn = (completedProjects / intervalDays) * 100;
+  return churn;
+}
+
 function run(argv) {
   let ofApp = Application("OmniFocus");
   if (! ofApp) {
@@ -57,12 +66,10 @@ function run(argv) {
     }
   }
   let now = new Date();
-  let interval = timeIntervalSinceNow(oldestProjectDate);
-  let intervalDays = daysFromInterval(interval);
-  let churn = (completedProjects / intervalDays) * 100;
+  let churn = churnRate(completedProjects, oldestProjectDate)
   console.log("Date,Active Projects,Active Tasks,Churn Rate");
   console.log(now.toLocaleDateString() + ", " + activeProjects + ", "
-              + activeTasks + ", " + churn);
+              + activeTasks + ", " + churn.toPrecision(3));
     if (! ofAppAlreadyRunning) {
     ofApp.quit();
   }
