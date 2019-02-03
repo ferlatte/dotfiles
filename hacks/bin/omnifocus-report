@@ -2,6 +2,17 @@
 // -*- mode: JavaScript -*-
 
 
+// takes a Date and returns the interval in seconds since now.
+function timeIntervalSinceNow(d) {
+  now = new Date();
+  interval = now.getTime() - d.getTime();
+  return interval / 1000; // Remember, JavaScript time is milliseconds
+}
+
+function daysFromInterval(i) {
+  return Math.round(i / 86400)
+}
+
 function run(argv) {
   let ofApp = Application("OmniFocus");
   if (! ofApp) {
@@ -26,6 +37,10 @@ function run(argv) {
     } else {
       activeProjects += 1;
     }
+    // singletonActionHolder maps to "Single Action" projects.
+    // We use that to indicate if the project should count towards
+    // the churn calculation (single action projects are forever so should
+    // be excluded).
     if (! p.singletonActionHolder()) {
       if (oldestProjectDate > p.creationDate()) {
         oldestProjectDate = p.creationDate();
@@ -42,10 +57,13 @@ function run(argv) {
     }
   }
   let now = new Date();
-  console.log(now.toLocaleDateString() + ", " + activeProjects + ", " + activeTasks)
-  console.log("completedProjects: " + completedProjects + " oldestProject: "
-              + oldestProjectDate);
-  if (! ofAppAlreadyRunning) {
+  let interval = timeIntervalSinceNow(oldestProjectDate);
+  let intervalDays = daysFromInterval(interval);
+  let churn = (completedProjects / intervalDays) * 100;
+  console.log("Date,Active Projects,Active Tasks,Churn Rate");
+  console.log(now.toLocaleDateString() + ", " + activeProjects + ", "
+              + activeTasks + ", " + churn);
+    if (! ofAppAlreadyRunning) {
     ofApp.quit();
   }
 }
