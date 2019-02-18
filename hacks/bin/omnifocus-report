@@ -22,6 +22,13 @@ function churnRate(completedProjects, oldestProjectDate) {
   return churn;
 }
 
+// Turns out that project.completed() only counted "done", which meant
+// that dropped project were getting counted as active. Explicitly use
+// the status property to test for the state we actually want.
+function isProjectActive(project) {
+  return project.status() === "active";
+}
+
 function run(argv) {
   let ofApp = Application("OmniFocus");
   if (! ofApp) {
@@ -35,16 +42,16 @@ function run(argv) {
   let ofAppAlreadyRunning = ofApp.running();
   let doc = ofApp.defaultDocument();
   projects = doc.flattenedProjects();
-  let totalProjects = 0;
   let activeProjects = 0;
   let completedProjects = 0;
+  let activeTasks = 0;
   let oldestProjectDate = new Date();
   for (let p of projects) {
-    totalProjects += 1;
-    if (p.completed()) {
-      completedProjects += 1;
-    } else {
+    if (isProjectActive(p)) {
       activeProjects += 1;
+      activeTasks += (p.numberOfTasks() - p.numberOfCompletedTasks());
+    } else {
+      completedProjects += 1;
     }
     // singletonActionHolder maps to "Single Action" projects.
     // We use that to indicate if the project should count towards
@@ -54,15 +61,6 @@ function run(argv) {
       if (oldestProjectDate > p.creationDate()) {
         oldestProjectDate = p.creationDate();
       }
-    }
-  }
-  tasks = doc.flattenedTasks()
-  let totalTasks = 0
-  let activeTasks = 0
-  for (let t of tasks) {
-    totalTasks += 1;
-    if (! t.completed()) {
-      activeTasks += 1;
     }
   }
   let now = new Date();
