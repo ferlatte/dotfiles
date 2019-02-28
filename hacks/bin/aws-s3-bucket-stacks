@@ -5,7 +5,7 @@ set -eu -o pipefail
 aws --output=text s3api list-buckets --query "Buckets[*].{Name: Name}" |
     sort | while read -r b; do
     s=$(aws --output=text s3api get-bucket-tagging --bucket "${b}" --query "TagSet[?Key=='aws:cloudformation:stack-name'].Value" 2> /dev/null || echo -n )
-    if [[ ! -z "$s" ]]; then
+    if [[ -n "$s" ]]; then
         echo "$b" "$s"
     else
         echo "$b"

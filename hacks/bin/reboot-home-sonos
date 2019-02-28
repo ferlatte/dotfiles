@@ -5,6 +5,5 @@ set -eu -o pipefail
 readonly SONOS_IPS="192.168.242.13 192.168.242.9 192.168.242.8 192.168.242.10 192.168.242.11"
 
 for ip in $SONOS_IPS; do
-    curl http://${ip}:1400/reboot
+    curl "http://${ip}:1400/reboot"
 done
-

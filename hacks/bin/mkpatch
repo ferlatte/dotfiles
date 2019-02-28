@@ -3,4 +3,4 @@
 # Generate a patch for submitting to another project.
 # Usage: $0 dir.orig dir
 
-diff -uNrb -x 'CVS' -x '*~' -x '*.o' $1 $2
+diff -uNrb -x 'CVS' -x '*~' -x '*.o' "$1" "$2"

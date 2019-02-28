@@ -24,7 +24,7 @@ fi
 # Use TERM_SESSION_ID as a hint that we're in an Aqua environment
 # This absurd construct is the best way to determine if a shell variable
 # is bound or not.
-if [[ ! -z "${TERM_SESSION_ID-}" ]]; then
+if [[ -n "${TERM_SESSION_ID-}" ]]; then
     emacsclient_args=--create-frame
 else
     emacsclient_args=--tty

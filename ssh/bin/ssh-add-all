@@ -2,8 +2,8 @@
 
 set -eu -o pipefail
 
-pushd $HOME/.ssh > /dev/null
+pushd "$HOME/.ssh" > /dev/null
 ssh-add -D
-ssh-add *.key
+ssh-add -- *.key
 
 ssh-add-yubikey
