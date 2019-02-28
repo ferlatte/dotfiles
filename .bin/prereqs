@@ -1,0 +1,183 @@
+#! /usr/bin/env bash
+
+PREREQS=$(basename "$0")
+
+# Returns the physical dir that this script is in.
+# To use:
+# local prereqs_dir_retval
+# prereqs_dir
+# echo $prereqs_dir_retval
+prereqs_dir() {
+    local d=""
+    local src="${BASH_SOURCE[0]}"
+    # # resolve $src until the file is no longer a symlink.
+    while [[ -h "$src" ]]; do
+        d="$(cd -P "$(dirname "$src")" && pwd)"
+        src="$(readlink "$src")"
+        # If src was a relative symlink, we need to resolve it relative to
+        # the path where the symlink was located.
+        [[ $src != /* ]] && src="$d/$src"
+    done
+    prereqs_dir_retval="$(cd -P "$(dirname "$src")" && pwd)"
+    return 0
+}
+
+has() {
+    local tool=$1
+    if [[ -n $(type -p "${tool}") ]]; then
+        echo "${tool} exists."
+        return 0
+    else
+        echo "WARNING: ${tool} not found."
+        prereqs_found=false
+        return 1
+    fi
+}
+
+prereqs_check() {
+    local config_file=${1:-prereqs.conf}
+    prereqs_found=true
+    set +e
+    # shellcheck source=/dev/null
+    . "${config_file}"
+    set -e
+    if [[ $prereqs_found == "true" ]]; then
+        echo "OK: all prereqs found"
+    else
+        echo "ERROR: some prereqs missing, please install them"
+        return 1
+    fi
+}
+
+prereq_check_readme() {
+    local readme=${1:-README.md}
+    prereqs_found=true
+    # Note: We use `awk` because its behavior is more consistent
+    # across platforms than `sed` (To use ERE with sed in BSDs is -E
+    # whereas in GNU is -r) If we find that `awk` is not reliably
+    # available, we can switch to `sed` with capability tests to
+    # determine the correct ERE flag.
+    if ! has awk; then
+        return 1
+    fi
+    if ! has sed; then
+        return 1
+    fi
+    # Find most-indented prereqs section
+    declare -a header_tags=('######' '#####' '####' '###' '##' '#')
+    for header_tag in "${header_tags[@]}"; do
+        local line_number
+        line_number=$(awk "/${header_tag} prereqs$|${header_tag} Prerequisites$/{print NR}" "$readme")
+        if [[ -n ${line_number} ]]; then
+            break
+        fi
+    done
+    # Scan until next header section
+    while [[ ${line_number} -lt $(awk 'END {print NR}' "$readme") ]] ; do
+        line_number=$((line_number + 1))
+        local line
+        line=$(awk "NR==${line_number}" "$readme")
+        if [[ -n $(echo "$line" | awk "/##/") ]]; then
+            break
+        fi
+        local prereq
+        # We might be able to remove the dependency on sed here, and it
+        # will require more testing than I currently have time for.
+        # --mark
+        # shellcheck disable=SC2001
+        prereq=$(echo "$line" | sed "s/- //")
+        # shellcheck disable=SC2001
+        prereq=$(echo "$prereq" | sed 's/^[[:space:]]*//g')
+        # TODO: support descriptions ala "Postgres (psql)"
+        if [[ -n ${prereq} ]]; then
+            set +e
+            if ! has "$prereq"; then
+            # if [[ $? != 0 ]]; then
+                prereqs_found="false"
+            fi
+            set -e
+        fi
+    done
+    if [[ $prereqs_found == "true" ]]; then
+        echo "OK: all prereqs found"
+    else
+        echo "ERROR: some prereqs missing, please install them"
+        return 1
+    fi
+}
+
+prereqs_update() {
+    local tag=${1:-latest}
+    local d=""
+    local prereqs_dir_retval
+    if prereqs_dir; then
+        d="$prereqs_dir_retval"
+    else
+        # error
+        return 1
+    fi
+    if ! has curl; then
+        return 1
+    fi
+    pushd "$d" > /dev/null
+    local prereqs_tmp="${PREREQS}.tmp"
+    if curl -s -q -o "$prereqs_tmp" \
+            "https://raw.githubusercontent.com/trussworks/prereqs/${tag}/prereqs"
+    then
+        echo "Got it"
+        install -C "${prereqs_tmp}" "${PREREQS}"
+    else
+        echo "Failed"
+        return 1
+    fi
+}
+
+prereqs_usage() {
+    cat <<EOF
+Usage: ${PREREQS} -c prereq.conf [-h] [-u [-t tag]]
+
+       -c FILE    Load the config file
+       -h         Print this help
+       -r README  Read prereqs out of the README.md specified
+       -u         Update prereq to current version from tag (default latest)
+       -t         Tag to update to (default latest)
+EOF
+}
+
+main() {
+    # Enable the safeties
+    set -eu -o pipefail
+    local update_tag="latest"
+    while getopts 'c:hr:t:u' opt; do
+        case ${opt} in
+            c)
+                prereqs_check "${OPTARG}"
+                exit $?
+                ;;
+            h)
+                prereqs_usage
+                exit 0
+                ;;
+            r)
+                prereq_check_readme "${OPTARG}"
+                exit $?
+                ;;
+            t)
+                update_tag="${OPTARG}"
+                ;;
+            u)
+                prereqs_update "${update_tag}"
+                exit $?
+                ;;
+            *)
+                prereqs_usage
+                exit 1
+                ;;
+        esac
+    done
+    prereqs_usage
+    exit 1
+}
+
+# Execute main() if this is run in standalone mode (vs. from a unit test)
+[ -z "${SHUNIT_VERSION}" ] && main "$@"

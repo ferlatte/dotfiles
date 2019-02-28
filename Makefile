@@ -1,7 +1,7 @@
 SHELL = /bin/bash
 PRE-COMMIT := $(shell which pre-commit)
 
-all: pre-commit
+all: pre-commit .prereqs.stamp install
 
 # Shortcut to run pre-commit hooks over the entire repo.
 pre-commit: .git/hooks/pre-commit
@@ -11,7 +11,16 @@ pre-commit: .git/hooks/pre-commit
 .git/hooks/pre-commit: $(PRE-COMMIT)
 	pre-commit install
 
+# Re-check prereqs if the prereqs configuration is newer than the last time
+# we checked.
+.prereqs.stamp: README.md
+	.bin/prereqs -r README.md
+	touch .prereqs.stamp
+
+install: .prereqs.stamp
+	stow [a-z]*
+
 clean:
 	rm -f .*.stamp
 
-.PHONY: all clean pre-commit
+.PHONY: all clean pre-commit install
