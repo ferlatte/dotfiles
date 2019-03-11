@@ -23,10 +23,4 @@ if inpath vagrant; then
     vagrant plugin update
 fi
 
-# These end up in ~/src/go/bin
-go get -u github.com/nsf/gocode
-go get -u mvdan.cc/sh/cmd/shfmt
-go get -u github.com/alecthomas/gometalinter
-gometalinter --install
-
 emacsup
