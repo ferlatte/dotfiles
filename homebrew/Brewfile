@@ -51,3 +51,4 @@ brew 'direnv'
 brew 'ctags'
 brew 'global', args: ["with-ctags", "with-pygments"]
 brew 'kr'
+brew 'python'
