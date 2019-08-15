@@ -2,7 +2,6 @@ tap "caskroom/cask"
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "kryptco/tap"
-tap "ouchxp/nodenv"
 brew "aspell"
 brew "python"
 brew "awscli"
@@ -26,7 +25,6 @@ brew "terraform"
 brew "terraform-docs"
 brew "wget"
 brew "kryptco/tap/kr"
-brew "ouchxp/nodenv/nodenv-nvmrc"
 cask 'google-drive-file-stream'
 cask 'gpg-suite'
 cask 'emacs'
@@ -38,7 +36,6 @@ mas "1Password 7", id: 1333542190
 mas "com.cordlessdog.Stay", id: 435410196
 mas "DaisyDisk", id: 411643860
 mas "Harvest", id: 506189836
-mas "Homeworld Remastered Collection", id: 991804858
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Marked 2", id: 890031187

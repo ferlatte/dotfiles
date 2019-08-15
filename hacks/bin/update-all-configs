@@ -6,7 +6,7 @@ function inpath {
     command -v "$1" > /dev/null
 }
 
-pushd ~/dotfiles > /dev/null
+pushd ~/.dotfiles > /dev/null
 git pull
 stow [a-z]*
 popd > /dev/null
