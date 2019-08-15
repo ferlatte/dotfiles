@@ -1,54 +1,54 @@
-tap 'caskroom/cask'
-tap 'homebrew/bundle'
-tap 'homebrew/core'
-tap 'ouchxp/nodenv'
-tap 'kryptco/tap'
-cask 'emacs'
-cask 'encryptme'
-cask 'firefox'
+tap "caskroom/cask"
+tap "homebrew/bundle"
+tap "homebrew/core"
+tap "kryptco/tap"
+tap "ouchxp/nodenv"
+brew "aspell"
+brew "python"
+brew "awscli"
+brew "git"
+brew "jq"
+brew "mas"
+brew "mtr"
+brew "nmap"
+brew "node-build"
+brew "nodenv"
+brew "packer"
+brew "pre-commit"
+brew "pyenv"
+brew "pyenv-virtualenv"
+brew "ruby-build"
+brew "rbenv"
+brew "rbenv-bundler"
+brew "shellcheck"
+brew "stow"
+brew "terraform"
+brew "terraform-docs"
+brew "wget"
+brew "kryptco/tap/kr"
+brew "ouchxp/nodenv/nodenv-nvmrc"
 cask 'google-drive-file-stream'
-cask 'keybase'
-cask 'viscosity'
-cask 'zoomus'
-cask 'docker'
 cask 'gpg-suite'
-cask 'aws-vault'
+cask 'emacs'
+cask 'keybase'
 cask 'muzzle'
-brew 'aspell'
-brew 'autoconf'
-brew 'automake'
-brew 'awscli'
-brew 'entr'
-brew 'exercism'
-brew 'git'
-brew 'gitless'
-brew 'mtr'
-brew 'nmap'
-brew 'node-build'
-brew 'nodenv'
-brew 'nodenv-nvmrc'
-brew 'packer'
-brew 'pre-commit'
-brew 'pyenv'
-brew 'pyenv-virtualenv'
-brew 'readline'
-brew 'ruby-build'
-brew 'rbenv'
-brew 'rbenv-bundler'
-brew 'shellcheck'
-brew 'stow'
-brew 'terraform'
-brew 'terraform-docs'
-brew 'wget'
-brew 'xcproj'
-brew 'xctool'
-brew 'xz'
-brew 'yarn'
-brew 'jq'
-brew 'dep'
-brew 'hub'
-brew 'direnv'
-brew 'ctags'
-brew 'global', args: ["with-ctags", "with-pygments"]
-brew 'kr'
-brew 'python'
+cask 'zoomus'
+mas "1Blocker", id: 1107421413
+mas "1Password 7", id: 1333542190
+mas "com.cordlessdog.Stay", id: 435410196
+mas "DaisyDisk", id: 411643860
+mas "Harvest", id: 506189836
+mas "Homeworld Remastered Collection", id: 991804858
+mas "Keynote", id: 409183694
+mas "Kindle", id: 405399194
+mas "Marked 2", id: 890031187
+mas "Next Meeting", id: 1017470484
+mas "Numbers", id: 409203825
+mas "OmniFocus", id: 1346203938
+mas "Pages", id: 409201541
+mas "Slack", id: 803453959
+mas "Soulver", id: 413965349
+mas "The Unarchiver", id: 425424353
+mas "TweetDeck", id: 485812721
+mas "WiFi Explorer", id: 494803304
+mas "Xcode", id: 497799835
