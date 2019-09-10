@@ -29,13 +29,17 @@ I use these heavily, and my dotfiles depend on them.
 
 Go to http://brew.sh and follow the installation instructions.
 
-`brew tap "kryptco/tap"`
-`brew install "kryptco/tap/kr"`
-`brew install stow`
+``` shell
+brew tap "kryptco/tap"
+brew install "kryptco/tap/kr"
+brew install stow
+```
 
 ### Install bash-it
 
-`git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it`
+``` shell
+git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+```
 
 ### Install EMACS Prelude
 
@@ -43,6 +47,8 @@ Go to http://brew.sh and follow the installation instructions.
 
 ### Checkout dotfiles
 
-`git clone git@github.com:ferlatte/dotfiles.git ~/.dotfiles`
-`cd .dotfiles`
-`stow [a-z]*`
+``` shell
+git clone git@github.com:ferlatte/dotfiles.git ~/.dotfiles
+cd .dotfiles
+stow [a-z]*
+```
