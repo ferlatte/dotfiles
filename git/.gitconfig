@@ -8,7 +8,7 @@
 	ui = true
 [core]
 	fsyncObjectFiles = true
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore_global
 [diff]
 	algorithm = patience
 [fetch]
