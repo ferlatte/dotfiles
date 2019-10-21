@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 set -eu -o pipefail
 
@@ -11,7 +11,10 @@ git pull
 stow [a-z]*
 popd > /dev/null
 
-bash-it-configure
+bash_it="${BASH_IT:-}"
+if [ ! -z "$bash_it" ]; then
+    bash-it-configure
+fi
 
 brewup
 
