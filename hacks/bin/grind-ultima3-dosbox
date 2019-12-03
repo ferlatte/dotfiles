@@ -1,0 +1,17 @@
+#! /usr/bin/osascript -l JavaScript
+// -*- mode: JavaScript -*-
+
+
+function run(argv) {
+  let DOSBoxApp = Application("dosbox");
+  if (! DOSBoxApp) {
+    console.log("Couldn't find DOSBox");
+    return
+  }
+  DOSBoxApp.includeStandardAdditions = true;
+  DOSBoxApp.strictPropertyScope = true;
+  DOSBoxApp.strictCommandScope = true;
+  DOSBoxApp.strictParameterType = true;
+  let DOSBoxAppAlreadyRunning = DOSBoxApp.running();
+  console.log(DOSBoxAppAlreadyRunning);
+}

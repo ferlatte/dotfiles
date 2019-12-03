@@ -1,6 +1,10 @@
 #! /usr/bin/osascript -l JavaScript
 // -*- mode: JavaScript -*-
 
+// https://developer.apple.com/library/archive/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/Articles/OSX10-10.html#//apple_ref/doc/uid/TP40014508-CH109-SW1
+
+ObjC.import("stdio");
+
 // If you use anything other than the bundle id for the Contacts app,
 // it doesn't work, despite what the documentation says.
 var contactsApp = Application("com.apple.AddressBook");
@@ -10,17 +14,18 @@ contactsApp.strictCommandScope = true;
 contactsApp.strictParameterType = true;
 var contactsAppAlreadyRunning = contactsApp.running();
 
-console.log("First,Last,Email")
+$.printf("%s\n", "First,Last,Email");
 
 for (let p of contactsApp.people()) {
-    let firstName = p.firstName();
-    let lastName = p.lastName();
-    for (let email of p.emails()) {
-        emailString = email.value();
-        console.log(firstName + "," + lastName + "," + emailString)
-    }
+  let firstName = p.firstName();
+  let lastName = p.lastName();
+  for (let email of p.emails()) {
+    emailString = email.value();
+    csvLine = firstName + "," + lastName + "," + emailString;
+    $.printf("%s\n", csvLine);
+  }
 }
 
 if (! contactsAppAlreadyRunning) {
-    contactsApp.quit();
+  contactsApp.quit();
 }

@@ -1,6 +1,7 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "kryptco/tap"
+tap "golangci/tap"
 brew "aspell"
 brew "python"
 brew "awscli"
@@ -24,6 +25,7 @@ brew "terraform"
 brew "terraform-docs"
 brew "wget"
 brew "kryptco/tap/kr"
+brew "golangci/tap/golangci-lint"
 cask 'gpg-suite'
 cask 'emacs'
 cask 'keybase'

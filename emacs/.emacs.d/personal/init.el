@@ -5,7 +5,7 @@
 
 (defvar my/packages
   '(auto-package-update
-    flycheck-gometalinter
+    flycheck-golangci-lint
     solarized-theme
     toml-mode
     ggtags)
@@ -35,19 +35,8 @@
 (setq js2-basic-offset 2)
 (setq js2-strict-trailing-comma-warning nil)
 
-(require 'flycheck-gometalinter)
 (eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-gometalinter-setup))
-
-;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
-(setq flycheck-gometalinter-vendor t)
-;; use in tests files
-(setq flycheck-gometalinter-test t)
-;; Only use fast linters
-(setq flycheck-gometalinter-fast t)
-;; Set different deadline (default: 5s)
-(setq flycheck-gometalinter-deadline "30s")
-(setq flycheck-gometalinter-disable-linters (list "gocyclo"))
+  '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
 
 (defun my/use-eslint-from-node-modules ()
   "Use local eslint in node_modules instead of global install."
@@ -85,6 +74,10 @@
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (setq cedet-global-command "global")
+
+;; Prelude enables whitespace-mode by default, which makes tabs explode in your
+;; face. So we turn it off.
+(setq prelude-whitespace nil)
 
 (provide 'init)
 ;;; init.el ends here
