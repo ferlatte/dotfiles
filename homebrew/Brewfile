@@ -26,6 +26,8 @@ brew "terraform-docs"
 brew "wget"
 brew "kryptco/tap/kr"
 brew "golangci/tap/golangci-lint"
+brew "ykman"
+brew "ykpers"
 cask 'gpg-suite'
 cask 'emacs'
 cask 'keybase'
