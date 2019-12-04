@@ -1,7 +1,7 @@
 [user]
 	name = Mark Ferlatte
 	email = mark@truss.works
-	signingkey = E049969483F8E5B3
+	signingkey = 620E114E391147D1
 [push]
 	default = simple
 [color]
@@ -27,6 +27,6 @@
 [commit]
 	gpgSign = true
 [gpg]
-	program = /usr/local/bin/krgpg
+	program = /usr/local/bin/gpg
 [tag]
 	forceSignAnnotated = true
