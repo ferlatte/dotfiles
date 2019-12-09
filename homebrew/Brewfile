@@ -28,6 +28,7 @@ brew "kryptco/tap/kr"
 brew "golangci/tap/golangci-lint"
 brew "ykman"
 brew "ykpers"
+brew "go"
 cask 'gpg-suite'
 cask 'emacs'
 cask 'keybase'
