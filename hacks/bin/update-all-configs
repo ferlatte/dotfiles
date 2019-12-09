@@ -12,7 +12,7 @@ stow [a-z]*
 popd > /dev/null
 
 bash_it="${BASH_IT:-}"
-if [ ! -z "$bash_it" ]; then
+if [ -n "$bash_it" ]; then
     bash-it-configure
 fi
 
@@ -27,3 +27,11 @@ if inpath vagrant; then
 fi
 
 emacsup
+
+if inpath softwareupdate; then
+    softwareupdate --list
+fi
+
+if inpath mas; then
+    mas upgrade
+fi
