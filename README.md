@@ -15,9 +15,8 @@ etc.
 
 I use these heavily, and my dotfiles depend on them.
 
-* Bash-It: https://github.com/Bash-it/bash-it
 * EMACS Prelude: https://github.com/bbatsov/prelude
-* Brew
+* Homebrew
 
 ## prereqs
 
@@ -30,15 +29,7 @@ I use these heavily, and my dotfiles depend on them.
 Go to http://brew.sh and follow the installation instructions.
 
 ``` shell
-brew tap "kryptco/tap"
-brew install "kryptco/tap/kr"
 brew install stow
-```
-
-### Install bash-it
-
-``` shell
-git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 ```
 
 ### Install EMACS Prelude
