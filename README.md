@@ -34,7 +34,7 @@ brew install stow
 
 ### Install EMACS Prelude
 
-`git clone git://github.com/bbatsov/prelude.git ~/.emacs.d`
+`git clone https://github.com/bbatsov/prelude.git ~/.emacs.d`
 
 ### Checkout dotfiles
 
