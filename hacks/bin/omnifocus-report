@@ -39,27 +39,18 @@ function isProjectRepeating(project) {
   return false;
 }
 
-function run(argv) {
-  let ofApp = Application("OmniFocus");
-  if (! ofApp) {
-    console.log("Couldn't find OmniFocus 3");
-    return
+function collectStats(projects) {
+  let stats = {
+    activeProjects: 0,
+    activeTasks: 0,
+    churnRate: 0.0
   }
-  ofApp.includeStandardAdditions = true;
-  ofApp.strictPropertyScope = true;
-  ofApp.strictCommandScope = true;
-  ofApp.strictParameterType = true;
-  let ofAppAlreadyRunning = ofApp.running();
-  let doc = ofApp.defaultDocument();
-  projects = doc.flattenedProjects();
-  let activeProjects = 0;
-  let completedProjects = 0;
-  let activeTasks = 0;
+  let completedProjects = 0
   let oldestProjectDate = new Date();
   for (let p of projects) {
     if (isProjectActive(p)) {
-      activeProjects += 1;
-      activeTasks += (p.numberOfTasks() - p.numberOfCompletedTasks());
+      stats.activeProjects += 1;
+      stats.activeTasks += (p.numberOfTasks() - p.numberOfCompletedTasks());
     } else {
       completedProjects += 1;
     }
@@ -73,11 +64,37 @@ function run(argv) {
       }
     }
   }
+  stats.churnRate = churnRate(completedProjects, oldestProjectDate).toPrecision(3)
+  return stats
+}
+
+function run(argv) {
+  let ofApp = Application("OmniFocus");
+  if (! ofApp) {
+    console.log("Couldn't find OmniFocus 3");
+    return
+  }
+  ofApp.includeStandardAdditions = true;
+  ofApp.strictPropertyScope = true;
+  ofApp.strictCommandScope = true;
+  ofApp.strictParameterType = true;
+  let ofAppAlreadyRunning = ofApp.running();
+  let doc = ofApp.defaultDocument();
+  projects = doc.flattenedProjects();
+  stats = collectStats(projects)
+  nonRepeatingProjects = projects.filter(function(e) {
+    return ! isProjectRepeating(e)
+  })
+  nonRepeatingStats = collectStats(nonRepeatingProjects)
   let now = new Date();
-  let churn = churnRate(completedProjects, oldestProjectDate)
-  console.log("Date,Active Projects,Active Tasks,Churn Rate");
-  console.log(now.toLocaleDateString() + ", " + activeProjects + ", "
-              + activeTasks + ", " + churn.toPrecision(3));
+  console.log("Date,Total Active Projects,Total Active Tasks,Total Churn Rate,Non-Repeating Active Projects,Non-Repeating Active Tasks,Non-Repeating Churn Rate");
+  console.log(now.toLocaleDateString() + "," +
+              stats.activeProjects + "," +
+              stats.activeTasks + "," +
+              stats.churnRate + "," +
+              nonRepeatingStats.activeProjects + "," +
+              nonRepeatingStats.activeTasks + "," +
+              nonRepeatingStats.churnRate);
     if (! ofAppAlreadyRunning) {
     ofApp.quit();
   }
