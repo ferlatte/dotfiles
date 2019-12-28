@@ -26,7 +26,17 @@ function churnRate(completedProjects, oldestProjectDate) {
 // that dropped project were getting counted as active. Explicitly use
 // the status property to test for the state we actually want.
 function isProjectActive(project) {
-  return project.status() === "active";
+  return project.status() === "active status";
+}
+
+// We want to distinguish between projects that repeat (Rituals) and
+// projects that are actually completed.
+function isProjectRepeating(project) {
+  rule = project.repetitionRule()
+  if (rule) {
+    return true;
+  }
+  return false;
 }
 
 function run(argv) {
