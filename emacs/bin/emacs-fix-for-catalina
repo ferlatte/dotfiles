@@ -1,0 +1,8 @@
+#! /bin/sh
+#
+# See https://spin.atomicobject.com/2019/12/12/fixing-emacs-macos-catalina/
+pushd /Applications/Emacs.app/Contents/MacOS
+mv Emacs Emacs-launcher
+mv Emacs-x86_64-10_14 Emacs
+pushd /Applications/Emacs.app/Contents
+rm -rf _CodeSignature
