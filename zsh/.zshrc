@@ -4,3 +4,6 @@ export PATH="${HOME}/bin:/usr/local/MacGPG2/bin:${PATH}"
 export CLICOLOR=yes
 # This maps to Solarized colors for ls output
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+
+# Enable rbenv
+eval "$(rbenv init -)"
