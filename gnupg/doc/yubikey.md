@@ -2,7 +2,7 @@
 
 Installed GPGSuite instead of from brew, and installed the YubiKey tools:
 
-    brew cask install gpgsuite
+    brew cask install gpg-suite
     brew install ykman ykpers
 
 Did no shell configuration at all.
