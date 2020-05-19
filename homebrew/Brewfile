@@ -34,12 +34,8 @@ cask 'muzzle'
 cask 'signal'
 mas "1Blocker", id: 1107421413
 mas "1Password 7", id: 1333542190
-mas "com.cordlessdog.Stay", id: 435410196
-mas "DaisyDisk", id: 411643860
-mas "Harvest", id: 506189836
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
-mas "Magnet", id: 441258766
 mas "Marked 2", id: 890031187
 mas "Next Meeting", id: 1017470484
 mas "Numbers", id: 409203825
@@ -47,6 +43,5 @@ mas "OmniFocus", id: 1346203938
 mas "Pages", id: 409201541
 mas "Soulver", id: 413965349
 mas "The Unarchiver", id: 425424353
-mas "TweetDeck", id: 485812721
 mas "WiFi Explorer", id: 494803304
 mas "Xcode", id: 497799835
