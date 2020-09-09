@@ -1,4 +1,4 @@
-export PATH="${HOME}/bin:/usr/local/MacGPG2/bin:${PATH}"
+export PATH="${HOME}/bin:/usr/local/MacGPG2/bin:/usr/local/sbin:${PATH}"
 
 # macOS ls needs this set for color output
 export CLICOLOR=yes
