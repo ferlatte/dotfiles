@@ -12,7 +12,7 @@
   "A list of packages to ensure are installed.")
 
 (defun my/packages-installed-p ()
-  (loop for p in my/packages
+  (cl-loop for p in my/packages
         when (not (package-installed-p p)) do (return nil)
         finally (return t)))
 
