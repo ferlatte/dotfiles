@@ -22,7 +22,7 @@ brew "stow"
 brew "ykman"
 brew "ykpers"
 cask 'gpg-suite'
-cask 'emacs'
+cask 'homebrew/cask/emacs'
 cask 'keybase'
 cask 'muzzle'
 cask 'signal'
@@ -39,4 +39,3 @@ mas "Pages", id: 409201541
 mas "Soulver", id: 413965349
 mas "The Unarchiver", id: 425424353
 mas "WiFi Explorer", id: 494803304
-mas "Xcode", id: 497799835
