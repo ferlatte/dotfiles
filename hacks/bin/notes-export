@@ -1,0 +1,17 @@
+#! /usr/bin/osascript -l JavaScript
+// -*- mode: JavaScript -*-
+
+function run(argv) {
+  let notesApp = Application("Notes");
+  if (! notesApp) {
+    console.log("Couldn't find Notes.app");
+    return;
+  }
+  notesApp.includeStandardAdditions = true;
+  notesApp.strictPropertyScope = true;
+  notesApp.strictCommandScope = true;
+  notesApp.strictParameterType = true;
+  let notesAppAlreadyRunning = notesApp.running();
+  let accounts = notesApp.accounts();
+  console.log($(accounts[0].id()));
+}

@@ -72,7 +72,7 @@ function run(argv) {
   let ofApp = Application("OmniFocus");
   if (! ofApp) {
     console.log("Couldn't find OmniFocus 3");
-    return
+    return;
   }
   ofApp.includeStandardAdditions = true;
   ofApp.strictPropertyScope = true;
@@ -83,7 +83,7 @@ function run(argv) {
   projects = doc.flattenedProjects();
   stats = collectStats(projects)
   nonRepeatingProjects = projects.filter(function(e) {
-    return ! isProjectRepeating(e)
+    return ! isProjectRepeating(e);
   })
   nonRepeatingStats = collectStats(nonRepeatingProjects)
   let now = new Date();
