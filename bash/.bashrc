@@ -1,4 +1,5 @@
 # .bashrc -*- Mode: Shell-script; -*-
+# shellcheck shell=bash
 
 # Don't do anything if we are a non-interactive shell.
 [[ -z "$PS1" ]] && return
@@ -7,12 +8,13 @@
 if [[ -d $HOME/.bash_it ]]; then
     export BASH_IT=$HOME/.bash_it
     # shellcheck source=/dev/null
-    source $BASH_IT/bash_it.sh
+    source "$BASH_IT"/bash_it.sh
 fi
 
 # Load the library
+# shellcheck disable=SC1091
 # shellcheck source=.bash_library
-[[ -f $HOME/.bash_library ]] && . $HOME/.bash_library
+[[ -f $HOME/.bash_library ]] && . "$HOME"/.bash_library
 
 # Set XTerm and compatibles titlebars
 case $TERM in

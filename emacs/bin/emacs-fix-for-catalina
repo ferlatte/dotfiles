@@ -1,8 +1,8 @@
-#! /bin/sh
+#! /bin/bash
 #
 # See https://spin.atomicobject.com/2019/12/12/fixing-emacs-macos-catalina/
-pushd /Applications/Emacs.app/Contents/MacOS
+pushd /Applications/Emacs.app/Contents/MacOS || exit 1
 mv Emacs Emacs-launcher
 mv Emacs-x86_64-10_14 Emacs
-pushd /Applications/Emacs.app/Contents
+pushd /Applications/Emacs.app/Contents || exit 1
 rm -rf _CodeSignature

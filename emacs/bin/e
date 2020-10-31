@@ -30,4 +30,4 @@ else
     emacsclient_args=--tty
 fi
 
-exec $e $emacsclient_args $emacsclient_args_wait "$@"
+exec "$e" "$emacsclient_args" "$emacsclient_args_wait" "$@"

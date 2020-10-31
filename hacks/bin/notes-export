@@ -12,6 +12,5 @@ function run(argv) {
   notesApp.strictCommandScope = true;
   notesApp.strictParameterType = true;
   let notesAppAlreadyRunning = notesApp.running();
-  let accounts = notesApp.accounts();
-  console.log($(accounts[0].id()));
+  console.log(notesApp.commandsOfClass());
 }
