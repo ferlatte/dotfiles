@@ -1,8 +1,5 @@
 brew "aspell"
-brew "python"
-brew "awscli"
 brew "git"
-brew "jq"
 brew "mas"
 brew "mtr"
 brew "nmap"
