@@ -13,7 +13,7 @@
  '(custom-enabled-themes '(solarized-dark))
  '(custom-safe-themes
    '("cdb4ffdecc682978da78700a461cdc77456c3a6df1c1803ae2dd55c59fa703e3" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default))
- '(exec-path-from-shell-check-startup-files nil)
+ '(exec-path-from-shell-check-startup-files nil t)
  '(fci-rule-color "#073642")
  '(gnutls-trustfiles
    '("/etc/ssl/certs/ca-certificates.crt" "/etc/pki/tls/certs/ca-bundle.crt" "/etc/ssl/ca-bundle.pem" "/usr/ssl/certs/ca-bundle.crt" "/usr/local/share/certs/ca-root-nss.crt" "/etc/ssl/cert.pem"))
