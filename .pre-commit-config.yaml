@@ -1,15 +1,19 @@
 repos:
-- repo: git://github.com/pre-commit/pre-commit-hooks
-  rev: v2.1.0
-  hooks:
-  - id: check-added-large-files
-  - id: check-case-conflict
-  - id: check-executables-have-shebangs
-  - id: check-merge-conflict
-  - id: check-yaml
-  - id: detect-private-key
-  - id: trailing-whitespace
--   repo: git://github.com/detailyang/pre-commit-shell
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
+      - id: check-useless-excludes
+  - repo: git://github.com/pre-commit/pre-commit-hooks
+    rev: v2.1.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: detect-private-key
+      - id: trailing-whitespace
+  - repo: git://github.com/detailyang/pre-commit-shell
     rev: 1.0.4
     hooks:
-    -   id: shell-lint
+      - id: shell-lint
