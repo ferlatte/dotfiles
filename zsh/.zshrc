@@ -8,4 +8,3 @@ export CLICOLOR=yes
 export EDITOR="e -w"
 # This maps to Solarized colors for ls output
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
-

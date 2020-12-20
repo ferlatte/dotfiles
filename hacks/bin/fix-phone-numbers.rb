@@ -24,4 +24,3 @@ ARGF.each_line do |l|
   end
   print line
 end
-
