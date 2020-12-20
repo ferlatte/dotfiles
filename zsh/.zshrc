@@ -9,7 +9,3 @@ export EDITOR="e -w"
 # This maps to Solarized colors for ls output
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
-# Enable rbenv,pyenv,nodenv
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
-eval "$(nodenv init -)"
