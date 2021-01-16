@@ -14,6 +14,7 @@ cask 'keybase'
 cask 'muzzle'
 cask 'signal'
 cask 'wireshark'
+cask 'secretive'
 mas "1Blocker", id: 1107421413
 mas "1Password 7", id: 1333542190
 mas "Keynote", id: 409183694
