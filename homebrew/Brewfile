@@ -9,6 +9,7 @@ brew "shellcheck"
 brew "stow"
 brew "ykman"
 brew "ykpers"
+brew "exercism"
 cask 'gpg-suite'
 cask 'homebrew/cask/emacs'
 cask 'keybase'
