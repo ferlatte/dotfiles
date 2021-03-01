@@ -25,7 +25,7 @@
 [rebase]
 	autoStash = true
 [commit]
-	gpgSign = true
+	gpgSign = false
 [gpg]
 	program = /usr/local/bin/gpg
 [tag]
