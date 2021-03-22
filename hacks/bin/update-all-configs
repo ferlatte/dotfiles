@@ -31,7 +31,3 @@ emacsup
 if inpath softwareupdate; then
     softwareupdate --list
 fi
-
-if inpath mas; then
-    mas upgrade
-fi

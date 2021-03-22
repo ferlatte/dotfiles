@@ -5,6 +5,6 @@ export PATH="${HOME}/bin:/usr/local/MacGPG2/bin:/usr/local/sbin:${PATH}"
 
 # macOS ls needs this set for color output
 export CLICOLOR=yes
-export EDITOR="e -w"
+export EDITOR="e"
 # This maps to Solarized colors for ls output
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD

@@ -1,18 +1,6 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 set -eu -o pipefail
-
-emacsclient_args_wait="--no-wait"
-while getopts ":w" option; do
-    case "$option" in
-        w)
-            emacsclient_args_wait=""
-            shift
-            ;;
-        *)
-            ;;
-    esac
-done
 
 e=emacsclient
 
@@ -30,4 +18,4 @@ else
     emacsclient_args=--tty
 fi
 
-exec "$e" "$emacsclient_args" "$emacsclient_args_wait" "$@"
+exec "$e" "$emacsclient_args" "$@"
