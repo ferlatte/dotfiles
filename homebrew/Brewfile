@@ -10,7 +10,7 @@ brew "stow"
 brew "ykman"
 brew "ykpers"
 brew "exercism"
-cask 'gpg-suite'
+brew 'gnupg'
 cask 'homebrew/cask/emacs'
 cask 'keybase'
 cask 'muzzle'
