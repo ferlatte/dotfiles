@@ -10,13 +10,14 @@ brew "stow"
 brew "ykman"
 brew "ykpers"
 brew "exercism"
-brew 'gnupg'
-cask 'homebrew/cask/emacs'
-cask 'keybase'
-cask 'muzzle'
-cask 'signal'
-cask 'wireshark'
-cask 'secretive'
+brew "gnupg"
+brew "asdf"
+cask "homebrew/cask/emacs"
+cask "keybase"
+cask "muzzle"
+cask "signal"
+cask "wireshark"
+cask "secretive"
 mas "1Blocker", id: 1365531024
 mas "1Password 7", id: 1333542190
 mas "Keynote", id: 409183694
