@@ -34,6 +34,7 @@
 (setq anaconda-mode-port 9000)
 (setq js2-basic-offset 2)
 (setq js2-strict-trailing-comma-warning nil)
+(add-to-list 'auto-mode-alist '("\\.omnijs\\'" . js2-mode))
 
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
