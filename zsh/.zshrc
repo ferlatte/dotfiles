@@ -8,3 +8,6 @@ export CLICOLOR=yes
 export EDITOR="e"
 # This maps to Solarized colors for ls output
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+
+# shellcheck source=/dev/null
+source "$(brew --prefix asdf)/asdf.sh"
