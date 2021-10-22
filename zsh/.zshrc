@@ -11,3 +11,5 @@ export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
 # shellcheck source=/dev/null
 source "$(brew --prefix asdf)/asdf.sh"
+
+eval "$(direnv hook zsh)"
