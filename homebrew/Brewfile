@@ -1,5 +1,5 @@
 tap "homebrew/cask"
-tap "trussworks/tap"
+tap "trussworks/homebrew-tap"
 brew "aspell"
 brew "git"
 brew "mas"
