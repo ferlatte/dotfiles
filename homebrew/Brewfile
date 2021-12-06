@@ -20,13 +20,9 @@ brew "tfenv"
 brew "terraform-docs"
 brew "setup-new-aws-user"
 cask "homebrew/cask/emacs"
-cask "muzzle"
-cask "signal"
-cask "secretive"
 cask "aws-vault"
 cask "gitify"
 mas "1Blocker", id: 1365531024
-mas "1Password 7", id: 1333542190
 mas "Kindle", id: 405399194
 mas "Marked 2", id: 890031187
 mas "OmniFocus", id: 1346203938

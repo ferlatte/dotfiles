@@ -3,7 +3,7 @@
 set -eu -o pipefail
 
 # Reset PATH because pyenv and friends confuse brew.
-export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/homebrew/bin
 
 pushd "${HOME}" > /dev/null
 # This check causes way more problems than it prevents, unfortunately.
