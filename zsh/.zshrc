@@ -5,6 +5,8 @@ export PATH="${HOME}/bin:${PATH}"
 
 if [ -x /opt/homebrew/bin/brew ]; then
     eval $(/opt/homebrew/bin/brew shellenv)
+elif [ -x /usr/local/bin/brew ]; then
+    eval $(/usr/local/bin/brew shellenv)
 fi
 
 # macOS ls needs this set for color output
@@ -17,3 +19,11 @@ export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 source "$(brew --prefix asdf)/asdf.sh"
 
 eval "$(direnv hook zsh)"
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  autoload -Uz compinit
+  compinit
+fi
+

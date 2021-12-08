@@ -13,8 +13,8 @@
 
 (defun my/packages-installed-p ()
   (cl-loop for p in my/packages
-        when (not (package-installed-p p)) do (return nil)
-        finally (return t)))
+        when (not (package-installed-p p)) do (cl-return nil)
+        finally (cl-return t)))
 
 (unless (my/packages-installed-p)
   (message "%s" "Refreshing my package database...")

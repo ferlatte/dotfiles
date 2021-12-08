@@ -22,8 +22,3 @@ brew "setup-new-aws-user"
 cask "homebrew/cask/emacs"
 cask "aws-vault"
 cask "gitify"
-mas "1Blocker", id: 1365531024
-mas "Kindle", id: 405399194
-mas "Marked 2", id: 890031187
-mas "OmniFocus", id: 1346203938
-mas "Soulver 2", id: 413965349
