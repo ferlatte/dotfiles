@@ -11,12 +11,18 @@ git pull
 stow [a-z]*
 popd > /dev/null
 
+if inpath macos-set-defaulst; then
+    macos-set-defaults
+fi
+
 bash_it="${BASH_IT:-}"
 if [ -n "$bash_it" ]; then
     bash-it-configure
 fi
 
-brewup
+if inpath brew; then
+    brewup
+fi
 
 if inpath pyenv; then
     pyenv rehash
