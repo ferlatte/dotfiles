@@ -2,9 +2,18 @@
 
 set -eu
 
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+systemPreferencesRunning=$(osascript -l JavaScript -e 'Application("System Preferences").quit()')
+
 # This displays file extensions in the Finder and file picker
 # UI.
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # This removes Trash items that are older than 30 days.
 defaults write com.apple.finder FXRemoveOldTrashItems -bool true
+
+# Re-open System Preferences if it was open when we started
+if test "$systemPreferencesRunning" == "true"; then
+    open -a "System Preferences"
+fi
