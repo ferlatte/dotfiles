@@ -1,7 +1,13 @@
 ;;; init.el --- my personal init.
 ;;; Commentary:
 ;;; Code:
+(require 'cl-lib)
+(require 'package)
+
 (server-start)
+
+;; Bump the font size to 14 points
+(set-face-attribute 'default nil :height 140)
 
 (defvar my/packages
   '(auto-package-update
@@ -12,6 +18,7 @@
   "A list of packages to ensure are installed.")
 
 (defun my/packages-installed-p ()
+  "Test if my packages are installed."
   (cl-loop for p in my/packages
         when (not (package-installed-p p)) do (cl-return nil)
         finally (cl-return t)))
@@ -36,9 +43,6 @@
 (setq js2-strict-trailing-comma-warning nil)
 (add-to-list 'auto-mode-alist '("\\.omnijs\\'" . js2-mode))
 
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
-
 (defun my/use-eslint-from-node-modules ()
   "Use local eslint in node_modules instead of global install."
   (defvar flycheck-javascript-eslint-executable)
@@ -53,13 +57,13 @@
 
 (add-hook 'markdown-mode-hook 'visual-line-mode)
 (defun my/markdown-config ()
+  "Set my Markdown configuration."
   (local-set-key (kbd "M-q") 'ignore)
   (whitespace-mode -1))
 (add-hook 'markdown-mode-hook 'my/markdown-config)
 
 
 (when (memq window-system '(mac ns))
-  (exec-path-from-shell-copy-envs '("GOPATH"))
   (exec-path-from-shell-initialize))
 
 (defun my-web-mode-hook ()
