@@ -11,7 +11,7 @@ git pull
 stow [a-z]*
 popd > /dev/null
 
-if inpath macos-set-defaulst; then
+if inpath macos-set-defaults; then
     macos-set-defaults
 fi
 
