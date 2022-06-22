@@ -15,21 +15,19 @@ export EDITOR="e"
 # This maps to Solarized colors for ls output
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
-
-asdf_path="$(brew --prefix asdf)/asdf.sh"
-if [ -f "${asdf_path}" ]; then
-    # shellcheck source=/dev/null
-    source "${asdf_path}"
+if type brew &> /dev/null
+then
+    asdf_path="$(brew --prefix asdf)/asdf.sh"
+    if [ -f "${asdf_path}" ]; then
+        # shellcheck source=/dev/null
+        source "${asdf_path}"
+    fi
+    
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit
+    compinit
 fi
 
 if type direnv &> /dev/null; then
     eval "$(direnv hook zsh)"
 fi
-
-if type brew &> /dev/null
-then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-  autoload -Uz compinit
-  compinit
-fi
-
