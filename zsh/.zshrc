@@ -17,7 +17,7 @@ export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
 if type brew &> /dev/null
 then
-    asdf_path="$(brew --prefix asdf)/asdf.sh"
+    asdf_path="$(brew --prefix asdf)/libexec/asdf.sh"
     if [ -f "${asdf_path}" ]; then
         # shellcheck source=/dev/null
         source "${asdf_path}"
