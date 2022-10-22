@@ -15,6 +15,8 @@ export EDITOR="e"
 # This maps to Solarized colors for ls output
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
+export SSH_AUTH_SOCK=$(ssh -G localhost | grep identityagent | cut -d ' ' -f 2)
+
 if type brew &> /dev/null
 then
     asdf_path="$(brew --prefix asdf)/libexec/asdf.sh"
