@@ -1,7 +1,7 @@
 [user]
 	name = Mark Ferlatte
 	email = mark@truss.works
-	signingkey = 620E114E391147D1
+	signingkey = key::ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDpj84JrT3TshGMfjt1kJ1nBIopWXZFoZ3Yji/FCcox5uoqkrDg+NjYGu2wj+jlXEkoBHYBvbTShohGtGTeXnEc=
 [push]
 	default = simple
 [color]
@@ -24,9 +24,9 @@
 [rebase]
 	autoStash = true
 [commit]
-	gpgSign = false
+	gpgsign = true
 [gpg]
-	program = /usr/local/bin/gpg
+	format = ssh
 [tag]
 	forceSignAnnotated = true
 [pull]
