@@ -14,5 +14,6 @@ Made .etc/committers.keys, with my public key in it.
 
 Ran `git config gpg.ssh.allowedSignersFile ./.etc/committers.keys`
 
+Then added my ssh key to github as a signing key, which gives a nice "Verified" flair on commits.
 
 
