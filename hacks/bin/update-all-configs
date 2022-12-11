@@ -24,9 +24,7 @@ if inpath brew; then
     brewup
 fi
 
-if inpath pyenv; then
-    pyenv rehash
-fi
+asdfup
 
 if inpath vagrant; then
     vagrant plugin update

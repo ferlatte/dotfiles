@@ -1,0 +1,22 @@
+#! /usr/bin/env bash
+#
+# asdf is managed and updated by homebrew; however, the plugins
+# aren't.
+
+if type brew &> /dev/null; then
+    asdf_path="$(brew --prefix asdf)/libexec/asdf.sh"
+    if [ -f "${asdf_path}" ]; then
+        # shellcheck source=/dev/null
+        source "${asdf_path}"
+    fi
+else
+    exit 1
+fi
+
+asdf plugin add ruby
+asdf plugin add python
+
+asdf plugin update --all
+
+asdf reshim
+
