@@ -6,27 +6,29 @@
 
 import csv
 
-with open('input.csv') as applecsv:
-    applereader = csv.DictReader(applecsv)
-    with open('output.csv', 'w') as monarchcsv:
-        fieldnames = ['Date', 'Merchant', 'Category', 'Account', 'Original Statement', 'Notes', 'Amount', 'Tags']
-        monarchwriter = csv.DictWriter(monarchcsv, fieldnames=fieldnames)
+def main():
+    with open('input.csv') as applecsv:
+        applereader = csv.DictReader(applecsv)
+        with open('output.csv', 'w') as monarchcsv:
+            fieldnames = ['Date', 'Merchant', 'Category', 'Account', 'Original Statement', 'Notes', 'Amount', 'Tags']
+            monarchwriter = csv.DictWriter(monarchcsv, fieldnames=fieldnames)
 
-        monarchwriter.writeheader()
+            monarchwriter.writeheader()
 
-        for row in applereader:
-            monarch_row = {}
-            monarch_row['Date'] = row['Transaction Date']
-            monarch_row['Merchant'] = row['Merchant']
-            monarch_row['Category'] = row['Category']
-            # Always hard coded for Monarch
-            monarch_row['Account'] = 'Apple Card'
-            # Not sure what this is used for, looks like Category
-            monarch_row['Original Statement'] = row['Merchant']
-            monarch_row['Notes'] = row['Description']
-            monarch_row['Amount'] = row['Amount (USD)']
+            for row in applereader:
+                monarch_row = {}
+                monarch_row['Date'] = row['Transaction Date']
+                monarch_row['Merchant'] = row['Merchant']
+                monarch_row['Category'] = row['Category']
+                # Always hard coded for Monarch
+                monarch_row['Account'] = 'Apple Card'
+                # Not sure what this is used for, looks like Category
+                monarch_row['Original Statement'] = row['Merchant']
+                monarch_row['Notes'] = row['Description']
+                monarch_row['Amount'] = row['Amount (USD)']
 
-            monarchwriter.writerow(monarch_row)
+                monarchwriter.writerow(monarch_row)
 
+if __name__ == "__main__":
+    main()
 
-    
