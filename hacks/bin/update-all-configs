@@ -24,6 +24,8 @@ if inpath brew; then
     brewup
 fi
 
+pyup
+
 asdfup
 
 if inpath vagrant; then

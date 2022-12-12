@@ -6,7 +6,7 @@
 
 import csv
 
-def main():
+def main() -> None:
     with open('input.csv') as applecsv:
         applereader = csv.DictReader(applecsv)
         with open('output.csv', 'w') as monarchcsv:
@@ -31,4 +31,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
