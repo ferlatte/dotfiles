@@ -15,7 +15,8 @@ export EDITOR="e"
 # This maps to Solarized colors for ls output
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
-export SSH_AUTH_SOCK=$(ssh -G localhost | grep identityagent | cut -d ' ' -f 2)
+SSH_AUTH_SOCK=$(ssh -G localhost | grep identityagent | cut -d ' ' -f 2)
+export SSH_AUTH_SOCK
 
 if type brew &> /dev/null
 then
@@ -24,7 +25,7 @@ then
         # shellcheck source=/dev/null
         source "${asdf_path}"
     fi
-    
+
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
     autoload -Uz compinit
     compinit

@@ -19,4 +19,3 @@ asdf plugin add python
 asdf plugin update --all
 
 asdf reshim
-

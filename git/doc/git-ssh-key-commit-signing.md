@@ -17,4 +17,3 @@ Ran `git config gpg.ssh.allowedSignersFile ./.etc/committers.keys`
 Then added my ssh key to github as a signing key, which gives a nice "Verified" flair on commits.
 
 To deal with multiple ssh keys (which you need to do, since Secretive keys are tied to the hardware), I chose to set user.signingkey for each repository locally, with a default for the computer that I use the most. There is likely a smarter way to deal with this.
-
