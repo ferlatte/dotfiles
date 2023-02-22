@@ -1,3 +1,5 @@
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/ferlatte/dotfiles/main.svg)](https://results.pre-commit.ci/latest/github/ferlatte/dotfiles/main)
+
 # dotfiles
 My personal dotfiles.
 
