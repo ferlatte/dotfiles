@@ -1,4 +1,3 @@
-tap "homebrew/cask"
 tap "trussworks/homebrew-tap"
 brew "aspell"
 brew "git"
