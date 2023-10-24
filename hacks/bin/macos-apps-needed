@@ -1,0 +1,33 @@
+#! /usr/bin/env swift
+
+import Foundation
+
+let needPaths = [
+  "/Applications/Drafts.app/",
+  "/Applications/Reeder.app/",
+  "/Users/mark/Applications/Brain.fm.app/"
+  ]
+
+var needApplications = Set<URL>()
+
+for path in needPaths {
+    let u = URL(fileURLWithPath: path)
+    needApplications.insert(u)
+}
+
+let fileManager = FileManager.default
+let applicationDirectories = fileManager.urls(for: .applicationDirectory,
+                                               in: [.localDomainMask, .userDomainMask])
+print("Hello, world!")
+
+var installedApplications = Set<URL>()
+for dir in applicationDirectories {
+    let applications = try fileManager.contentsOfDirectory(at: dir,
+                                                           includingPropertiesForKeys: nil,
+                                                           options: [])
+    let appSet = Set(applications)
+    installedApplications = installedApplications.union(appSet)
+}
+
+needApplications.subtract(installedApplications)
+print(needApplications)
