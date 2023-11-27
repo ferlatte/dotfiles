@@ -1,6 +1,6 @@
 [user]
 	name = Mark Ferlatte
-	email = mark@truss.works
+	email = mark@ferlatte.net
 	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICIRsoPmKbqRQI95hx1nRpMbTRI6IxoHyKLqqM7yvL4K
 [push]
 	default = simple
