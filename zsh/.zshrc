@@ -1,7 +1,7 @@
 # Shellcheck doesn't understand zsh specifically, and bash is close enough.
 # shellcheck shell=bash
 
-export PATH="${HOME}/bin:${PATH}"
+export PATH="${HOME}/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:${PATH}"
 
 if [ -x /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
