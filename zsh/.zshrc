@@ -11,7 +11,7 @@ fi
 
 # macOS ls needs this set for color output
 export CLICOLOR=yes
-export EDITOR="e"
+export EDITOR=code
 # This maps to Solarized colors for ls output
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
