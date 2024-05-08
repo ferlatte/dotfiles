@@ -1,0 +1,29 @@
+#! /usr/bin/env swift
+
+import Foundation
+
+func resolveFinderAlias(at url: URL) -> String? {
+    do {
+        let resourceValues = try url.resourceValues(forKeys: [.isAliasFileKey])
+        if resourceValues.isAliasFile! {
+            let original = try URL(resolvingAliasFileAt: url)
+            return original.path
+        }
+    } catch let error as NSError {
+        // error.code 260 is FileNotFound; not sure why the constant didn't work.
+        if (error.domain == NSCocoaErrorDomain) && (error.code == 260) {
+        } else {
+            print(error)
+        }
+    }
+    return nil
+}
+
+if (CommandLine.arguments.count == 2) {
+    let alias = URL(fileURLWithPath: CommandLine.arguments[1])
+    let originalMaybe = resolveFinderAlias(at: alias)
+    guard let original = originalMaybe else {
+        exit(1)
+    }
+    print(original)
+}
