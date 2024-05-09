@@ -14,6 +14,6 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write com.apple.finder FXRemoveOldTrashItems -bool true
 
 # Re-open System Preferences if it was open when we started
-if test "$systemSettingsRunning" == "true"; then
+if test "$systemSettingsRunning" = "true"; then
     open -a "System Settings"
 fi

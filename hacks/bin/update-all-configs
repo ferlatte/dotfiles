@@ -25,15 +25,11 @@ if inpath brew; then
     brewup
 fi
 
-pyup
-
 asdfup
 
 if inpath vagrant; then
     vagrant plugin update
 fi
-
-emacsup
 
 if inpath softwareupdate; then
     softwareupdate --list

@@ -17,7 +17,6 @@ etc.
 
 I use these heavily, and my dotfiles depend on them.
 
-* EMACS Prelude: https://github.com/bbatsov/prelude
 * Homebrew
 
 ## prereqs
@@ -34,15 +33,10 @@ Go to http://brew.sh and follow the installation instructions.
 brew install stow
 ```
 
-### Install EMACS Prelude
-
-`git clone https://github.com/bbatsov/prelude.git ~/.emacs.d`
-
-### Checkout dotfiles
+### Install dotfiles
 
 ``` shell
 git clone git@github.com:ferlatte/dotfiles.git ~/.dotfiles
 cd .dotfiles
-stow [a-z]*
-
+make install
 ```
