@@ -26,7 +26,7 @@ then
         source "${asdf_path}"
     fi
 
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    FPATH="$(brew --prefix)/share/zsh/site-functions:/usr/share/zsh/site-functions:/usr/share/zsh/5.9/functions"
     autoload -Uz compinit
     compinit
 fi
