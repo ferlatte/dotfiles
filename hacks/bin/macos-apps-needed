@@ -2,32 +2,47 @@
 
 import Foundation
 
-let needPaths = [
-  "/Applications/Drafts.app/",
-  "/Applications/Reeder.app/",
-  "/Users/mark/Applications/Brain.fm.app/"
+let needApps = [
+  "1Blocker",
+  "1Password for Safari",
+  "1Password",
+  "Amazon Kindle",
+  "AnyList",
+  "Discord",
+  "Discovery",
+  "Drafts",
+  "Factorio",
+  "Garmin Express",
+  "GitHub Desktop",
+  "Pages",
+  "Paprika Recipe Manager 3",
+  "Prime Video",
+  "Reeder",
+  "SF Symbols",
+  "Signal",
+  "Slack",
+  "Soulver 3",
+  "Speedtest",
+  "StopTheMadness",
+  "Visual Studio Code",
+  "WiFi Explorer",
+  "Xcode",
+  "zoom.us",
+  "Brain.fm",
   ]
-
-var needApplications = Set<URL>()
-
-for path in needPaths {
-    let u = URL(fileURLWithPath: path)
-    needApplications.insert(u)
-}
-
+var needApplications = Set(needApps)
 let fileManager = FileManager.default
 let applicationDirectories = fileManager.urls(for: .applicationDirectory,
                                                in: [.localDomainMask, .userDomainMask])
-print("Hello, world!")
-
-var installedApplications = Set<URL>()
+var installedApplications = Set<String>()
 for dir in applicationDirectories {
     let applications = try fileManager.contentsOfDirectory(at: dir,
                                                            includingPropertiesForKeys: nil,
                                                            options: [])
-    let appSet = Set(applications)
-    installedApplications = installedApplications.union(appSet)
+    for app in applications {
+      let appName = app.deletingPathExtension().lastPathComponent
+      installedApplications.insert(appName)
+    }
 }
-
 needApplications.subtract(installedApplications)
 print(needApplications)

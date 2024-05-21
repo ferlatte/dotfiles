@@ -31,6 +31,9 @@ if inpath vagrant; then
     vagrant plugin update
 fi
 
+echo "macOS apps needed:"
+macos-apps-needed
+
 if inpath softwareupdate; then
     softwareupdate --list
 fi
