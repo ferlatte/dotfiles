@@ -13,11 +13,16 @@ else
     exit 1
 fi
 
-asdf plugin add ruby
+pushd $HOME > /dev/null
+
 asdf plugin add python
 
 asdf plugin update --all
 
-asdf install
+# These two commands install the latest python runtime, and then
+# enable it globally as my default. There should be an "update" command
+# but there isn't, so you have to do this two-step.
+asdf install python latest
+asdf global python latest
 
 asdf reshim
