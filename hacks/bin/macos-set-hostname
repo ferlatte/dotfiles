@@ -1,9 +1,0 @@
-#! /bin/bash
-
-set -eu -o pipefail
-
-name=$1
-
-scutil --set HostName "$name"
-scutil --set LocalHostName "$name"
-scutil --set ComputerName "$name"

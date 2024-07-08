@@ -9,7 +9,8 @@ function inpath {
 pushd ~/.dotfiles > /dev/null
 git pull
 stow [a-z]*
-pre-commit autoupdate
+# This is handled by pre-commit.ci
+# pre-commit autoupdate
 popd > /dev/null
 
 if inpath macos-set-defaults; then
