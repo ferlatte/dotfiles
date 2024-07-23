@@ -13,7 +13,7 @@ else
     exit 1
 fi
 
-pushd $HOME > /dev/null
+pushd "$HOME" > /dev/null || exit 1
 
 asdf plugin add python
 

@@ -25,8 +25,10 @@ then
         # shellcheck source=/dev/null
         source "${asdf_path}"
     fi
-
-    FPATH="$(brew --prefix)/share/zsh/site-functions:/usr/share/zsh/site-functions:/usr/share/zsh/5.9/functions"
+    # This little bit of syntax adds an element (the brew site-functions, in this case) before
+    # the first element of the fpath array. This is how you do an unshift operation in zsh.
+    # shellcheck disable=SC2034 # fpath is used by zsh and shellcheck doesn't know this.
+    fpath[1,0]="$(brew --prefix)/share/zsh/site-functions"
     autoload -Uz compinit
     compinit
 fi
