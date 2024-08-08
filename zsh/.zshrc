@@ -30,7 +30,9 @@ then
     # shellcheck disable=SC2034 # fpath is used by zsh and shellcheck doesn't know this.
     fpath[1,0]="$(brew --prefix)/share/zsh/site-functions"
     autoload -Uz compinit
-    compinit
+    # compinit -i ignores fpath directories with insecure permissions. This is really
+    # common on multi-users macOS systems, and therefor annoying.
+    compinit -i
 fi
 
 if type direnv &> /dev/null; then
