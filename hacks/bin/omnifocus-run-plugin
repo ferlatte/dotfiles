@@ -1,0 +1,8 @@
+#! /usr/bin/osascript
+# This incredible hack uses Apple Script to ask OmniFocus to evaluate JavaScript (ie, the JavaScript here is running inside OmniFocus).
+# The JavaScript finds an existing plugin by id, finds an action within it by name, and then runs it as if you selected it from the menu.
+# There is no error handling, of course.
+tell application "OmniFocus"
+    evaluate javascript "PlugIn.find('net.ferlatte.omnifocus.FerlatteTools').action('clearFlag').perform()"
+end tell
+return
