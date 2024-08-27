@@ -7,6 +7,6 @@
         <key>Program</key>
         <string>/Users/mark/bin/omnifocus-run-plugin</string>
         <key>StartInterval</key>
-        <integer>60</integer>
+        <integer>3600</integer>
     </dict>
 </plist>
