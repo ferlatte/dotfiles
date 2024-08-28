@@ -8,7 +8,7 @@ function inpath {
 
 pushd ~/.dotfiles > /dev/null
 git pull
-stow [a-z]*
+make install
 # This is handled by pre-commit.ci
 # pre-commit autoupdate
 popd > /dev/null

@@ -17,7 +17,11 @@ pre-commit: .git/hooks/pre-commit
 	.bin/prereqs -r README.md
 	touch .prereqs.stamp
 
+# We need to handle LaunchAgents as a special case; macOS doesn't create automatically,
+# and we can't assume other software won't put it there. Therefor, ensure it exists *before*
+# stow runs
 install: .prereqs.stamp
+	mkdir -m 0755 -p $(HOME)/Library/LaunchAgents
 	stow [a-z]*
 
 clean:
