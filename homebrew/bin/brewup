@@ -9,7 +9,8 @@ pushd "${HOME}" > /dev/null
 # This check causes way more problems than it prevents, unfortunately.
 # brew doctor
 brew update
-brew bundle install # This also upgrades now.
+brew upgrade
+brew bundle install
 brew bundle cleanup --force
 brew cleanup
 popd > /dev/null
