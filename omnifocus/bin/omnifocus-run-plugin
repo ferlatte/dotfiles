@@ -3,6 +3,8 @@
 # The JavaScript finds an existing plugin by id, finds an action within it by name, and then runs it as if you selected it from the menu.
 # There is no error handling, of course.
 tell application "OmniFocus"
-    evaluate javascript "PlugIn.find('net.ferlatte.omnifocus.FerlatteTools').action('clearFlag').perform()"
+    if it is running
+        evaluate javascript "PlugIn.find('net.ferlatte.omnifocus.FerlatteTools').action('clearFlag').perform()"
+    end if
 end tell
 return
