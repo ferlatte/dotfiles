@@ -1,0 +1,19 @@
+#! /bin/sh
+
+set -eu
+
+if [ -f /etc/pam.d/sudo_local ]; then
+    # Assume that PAM is already configured
+    exit 0
+fi
+
+tmpfile=$(mktemp)
+
+cat > "$tmpfile" <<EOF
+# Enable TouchID for sudo
+auth       sufficient     pam_tid.so
+EOF
+
+sudo install -m 0644 "$tmpfile" /etc/pam.d/sudo_local
+
+rm "$tmpfile"
