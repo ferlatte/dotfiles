@@ -13,9 +13,8 @@ make install
 # pre-commit autoupdate
 popd > /dev/null
 
-if inpath macos-set-defaults; then
-    macos-set-defaults
-fi
+macos-set-defaults
+macos-enable-sudo-touchid
 
 bash_it="${BASH_IT:-}"
 if [ -n "$bash_it" ]; then
