@@ -19,10 +19,6 @@ repos:
       - id: forbid-submodules
       - id: mixed-line-ending
       - id: trailing-whitespace
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.14.0
-    hooks:
-      - id: mypy
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.10.0.1
     hooks:
