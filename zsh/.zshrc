@@ -20,6 +20,7 @@ export SSH_AUTH_SOCK
 
 if type brew &> /dev/null
 then
+    export ASDF_GOLANG_MOD_VERSION_ENABLED=true
     asdf_path="$(brew --prefix asdf)/libexec/asdf.sh"
     if [ -f "${asdf_path}" ]; then
         # shellcheck source=/dev/null
