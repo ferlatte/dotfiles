@@ -1,0 +1,5 @@
+theme = dark:Builtin Dark,light:Builtin Light
+font-family = Monaco
+window-height = 24
+window-width = 80
+
