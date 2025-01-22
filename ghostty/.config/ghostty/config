@@ -2,5 +2,5 @@ theme = dark:Builtin Dark,light:Builtin Light
 font-family = Monaco
 window-height = 24
 window-width = 80
-keybind = global:cmd+grave_accent=toggle_quick_terminal
+keybind = global:cmd+control+grave_accent=toggle_quick_terminal
 
