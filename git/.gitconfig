@@ -20,6 +20,7 @@
 	# go back before last commit, with files in uncommitted state
 	uncommit = reset --soft HEAD^
 	praise = blame
+	zap = "!git reset --hard HEAD; git clean -df"
 [rebase]
 	autoStash = true
 [commit]
