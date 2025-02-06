@@ -21,11 +21,8 @@ export SSH_AUTH_SOCK
 if type brew &> /dev/null
 then
     export ASDF_GOLANG_MOD_VERSION_ENABLED=true
-    asdf_path="$(brew --prefix asdf)/libexec/asdf.sh"
-    if [ -f "${asdf_path}" ]; then
-        # shellcheck source=/dev/null
-        source "${asdf_path}"
-    fi
+    export ASDF_DATA_DIR="$HOME/.asdf"
+    export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
     # This little bit of syntax adds an element (the brew site-functions, in this case) before
     # the first element of the fpath array. This is how you do an unshift operation in zsh.
     # shellcheck disable=SC2034 # fpath is used by zsh and shellcheck doesn't know this.
