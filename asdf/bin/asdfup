@@ -3,26 +3,17 @@
 # asdf is managed and updated by homebrew; however, the plugins
 # aren't.
 
-if type brew &> /dev/null; then
-    asdf_path="$(brew --prefix asdf)/libexec/asdf.sh"
-    if [ -f "${asdf_path}" ]; then
-        # shellcheck source=/dev/null
-        source "${asdf_path}"
-    fi
-else
-    exit 1
-fi
-
 pushd "$HOME" > /dev/null || exit 1
 
 asdf plugin add python
+asdf plugin add golang
 
 asdf plugin update --all
 
 # These two commands install the latest python runtime, and then
 # enable it globally as my default. There should be an "update" command
 # but there isn't, so you have to do this two-step.
-asdf install python latest
-asdf global python latest
+# asdf install python latest
+# asdf global python latest#
 
 asdf reshim
