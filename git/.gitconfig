@@ -40,3 +40,6 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+# This helps Go build modules in private respositories on GitHub.
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
