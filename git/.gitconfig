@@ -2,18 +2,6 @@
 	name = Mark Ferlatte
 	email = mark@ferlatte.net
 	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICIRsoPmKbqRQI95hx1nRpMbTRI6IxoHyKLqqM7yvL4K
-[push]
-	default = simple
-[color]
-	ui = true
-[core]
-	excludesfile = ~/.gitignore_global
-[diff]
-	algorithm = patience
-[fetch]
-	prune = true
-[transfer]
-	fsckObjects = true
 [alias]
 	# remove files from index (tracking)
 	unstage = reset HEAD
@@ -21,25 +9,62 @@
 	uncommit = reset --soft HEAD^
 	praise = blame
 	zap = "!git reset --hard HEAD; git clean -df"
-[rebase]
-	autoStash = true
+[branch]
+	# Sorting branch output by committerdate moves active branchs to the front, which are usually the
+	# branches you want to switch to.
+	sort = -committerdate
+[column]
+	# Display output in columns instead of lists; git branch is a good example.
+	ui = auto
 [commit]
+	# Always sign commits.
 	gpgsign = true
+[core]
+	# This becomes the default at some point, but it's not the default for Apple git as of
+	# 2025-03-05.
+	excludesfile = ~/.config/git/ignore
+[diff]
+	# histogram is the new patience.
+	algorithm = histogram
+	# Show moved lines in a different color.
+	colorMoved = plain
+	# replace the a/ and b/ in your diff header output with where the diff is coming from, so i/ (index), w/ (working directory) or c/ commit.
+	mnemonicPrefix = true
+	# detect if a file has been renamed
+	renames = true
+[fetch]
+	# These 3 settings make your local repo match the upstream repo, which is what you want for a centralized workflow like
+	# GitHub.
+	prune = true
+	pruneTags = true
+	all = true
 [gpg]
+	# Sign commits with an ssh key instead of trying to wrangle a GPG key.
 	format = ssh
 [gpg "ssh"]
 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-[tag]
-	forceSignAnnotated = true
-[pull]
-	rebase = false
 [init]
 	defaultBranch = main
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+[merge]
+	# Use zealous diff3 which shows both conflicts and the original lines.
+	conflictstyle = zdiff3
+[push]
+	# Setup remote tracking branches automatically.
+	autoSetupRemote = true
+[rebase]
+	# From https://blog.gitbutler.com/how-git-core-devs-configure-git/ I don't fully understand these.
+	autoStash = true
+	autoSquash = true
+	updateRefs = true
+[tag]
+	# Sign tags, too.
+	forceSignAnnotated = true
+	# Sort tags by version instead of lexically, so that 
+	sort = version:refname
 # This helps Go build modules in private respositories on GitHub.
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
+
+
+
+
