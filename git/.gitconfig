@@ -19,6 +19,8 @@
 [commit]
 	# Always sign commits.
 	gpgsign = true
+	# Show the diff associated with the commit
+	verbose = true
 [core]
 	# This becomes the default at some point, but it's not the default for Apple git as of
 	# 2025-03-05.
@@ -43,6 +45,8 @@
 	format = ssh
 [gpg "ssh"]
 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[help]
+	autocorrect = prompt
 [init]
 	defaultBranch = main
 [merge]
@@ -51,6 +55,8 @@
 [push]
 	# Setup remote tracking branches automatically.
 	autoSetupRemote = true
+	# Push all tags that aren't on the server every time you push.
+	followTags = true
 [rebase]
 	# From https://blog.gitbutler.com/how-git-core-devs-configure-git/ I don't fully understand these.
 	autoStash = true
