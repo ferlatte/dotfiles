@@ -70,7 +70,3 @@
 # This helps Go build modules in private respositories on GitHub.
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
-
-
-
-
