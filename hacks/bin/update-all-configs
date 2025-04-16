@@ -27,6 +27,11 @@ fi
 
 asdfup
 
+# NumPy makes gcloud ssh go much faster
+if inpath gcloud; then
+    $(gcloud info --format="value(basic.python_location)") -m pip install numpy
+fi
+
 if inpath vagrant; then
     vagrant plugin update
 fi

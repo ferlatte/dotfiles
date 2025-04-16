@@ -40,6 +40,11 @@
 	prune = true
 	pruneTags = true
 	all = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [gpg]
 	# Sign commits with an ssh key instead of trying to wrangle a GPG key.
 	format = ssh
@@ -70,3 +75,4 @@
 # This helps Go build modules in private respositories on GitHub.
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
+

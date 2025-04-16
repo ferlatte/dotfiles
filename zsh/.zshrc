@@ -35,3 +35,8 @@ fi
 if type direnv &> /dev/null; then
     eval "$(direnv hook zsh)"
 fi
+
+if type gcloud &> /dev/null; then
+    # This enables gcloud to use NumPy if you install it.
+    export CLOUDSDK_PYTHON_SITEPACKAGES=1
+fi
