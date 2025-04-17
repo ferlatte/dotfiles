@@ -1,0 +1,5 @@
+#! /bin/sh
+
+set -eu
+
+system_profiler SPFontsDataType | grep -F --quiet "Family: SF Mono"

@@ -36,6 +36,10 @@ if inpath vagrant; then
     vagrant plugin update
 fi
 
+if [ ! macos-has-sf-mono ]; then
+    echo "macOS font needed: SF Mono. Download from https://developer.apple.com/fonts/"
+fi
+
 echo "macOS apps needed:"
 macos-apps-needed
 
