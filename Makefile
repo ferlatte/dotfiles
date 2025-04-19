@@ -22,7 +22,7 @@ pre-commit: .git/hooks/pre-commit
 # stow runs
 install: .prereqs.stamp
 	mkdir -m 0755 -p $(HOME)/Library/LaunchAgents
-	stow [a-z]*
+	stow */
 
 clean:
 	rm -f .*.stamp
