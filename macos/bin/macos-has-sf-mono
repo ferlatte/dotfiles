@@ -1,5 +1,5 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
-set -eu
+set -eu -o pipefail
 
 system_profiler SPFontsDataType | grep -F --quiet "Family: SF Mono"
