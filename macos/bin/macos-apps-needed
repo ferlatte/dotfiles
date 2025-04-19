@@ -11,7 +11,7 @@ let needApps = [
   "Discord",
   "Discovery",
   "Drafts",
-  "Factorio",
+  "factorio",
   "Garmin Express",
   "Ghostty",
   "GitHub Desktop",
