@@ -6,7 +6,7 @@ if [ -x /opt/homebrew/bin/brew ]; then
 elif [ -x /usr/local/bin/brew ]; then
     eval "$(/usr/local/bin/brew shellenv)"
 fi
-export PATH="${HOME}/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Applications/Docker.app/Contents/Resources/bin:${PATH}"
+export PATH="${HOME}/bin:/Applications/OrbStack.app/Contents/MacOS/xbin:/Applications/OrbStack.app/Contents/MacOS/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:${PATH}"
 
 # macOS ls needs this set for color output
 export CLICOLOR=yes
