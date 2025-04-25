@@ -6,8 +6,6 @@
 pushd "$HOME" > /dev/null || exit 1
 
 asdf plugin add python
-asdf plugin add golang
-
 asdf plugin update --all
 
 # These two commands install the latest python runtime, and then
