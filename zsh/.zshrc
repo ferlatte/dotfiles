@@ -14,7 +14,7 @@ export EDITOR=code
 # This maps to Solarized colors for ls output
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
-SSH_AUTH_SOCK=$(ssh -G localhost | grep identityagent | cut -d ' ' -f 2)
+SSH_AUTH_SOCK="$(ssh -G localhost | grep identityagent | sed -e "s/^identityagent //")"
 export SSH_AUTH_SOCK
 
 if type brew &> /dev/null
