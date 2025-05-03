@@ -1,5 +1,11 @@
 #! /usr/bin/env bash
 
+
 set -eu -o pipefail
 
-system_profiler SPFontsDataType | grep -F --quiet "Family: SF Mono"
+# Explicitly don't use -o pipefail here; grep -F stops at first match, and we don't
+# care if system_profiler gets a SIGPIPE when it tries to write to the now closed pipe,
+# we just want it to exit.
+set +o pipefail
+system_profiler SPFontsDataType | grep -F --quiet "Family: SA Mono"
+set -o pipefail
