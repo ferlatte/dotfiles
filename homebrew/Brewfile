@@ -9,4 +9,4 @@ brew "gh"
 brew "direnv"
 cask "1password-cli"
 brew "node"
-
+brew "go"
