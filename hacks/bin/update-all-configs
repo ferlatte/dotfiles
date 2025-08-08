@@ -35,6 +35,10 @@ if ! macos-has-sf-mono; then
     echo "macOS font needed: SF Mono. Download from https://developer.apple.com/fonts/"
 fi
 
+if ! inpath claude; then
+    npm install -g @anthropic-ai/claude-code
+fi
+
 echo "macOS apps needed:"
 macos-apps-needed
 
