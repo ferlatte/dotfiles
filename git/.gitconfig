@@ -70,7 +70,7 @@
 [tag]
 	# Sign tags, too.
 	forceSignAnnotated = true
-	# Sort tags by version instead of lexically, so that 
+	# Sort tags by version instead of lexically, so that
 	sort = version:refname
 # This helps Go build modules in private respositories on GitHub.
 [url "ssh://git@github.com/"]
