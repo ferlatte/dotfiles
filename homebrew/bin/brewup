@@ -11,6 +11,7 @@ pushd "${HOME}" > /dev/null
 brew update
 brew upgrade
 brew bundle install
-brew bundle cleanup --force
-brew cleanup
+# Let's not bother unless it becomes a problem.
+# brew bundle cleanup --force
+# brew cleanup
 popd > /dev/null
