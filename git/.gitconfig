@@ -25,6 +25,8 @@
 	# This becomes the default at some point, but it's not the default for Apple git as of
 	# 2025-03-05.
 	excludesfile = ~/.config/git/ignore
+	# quotepath turns filenames with accents or emoji into octal escaped strings when this is enabled. Not needed in 2025.
+	quotePath = false
 [diff]
 	# histogram is the new patience.
 	algorithm = histogram
@@ -70,7 +72,7 @@
 [tag]
 	# Sign tags, too.
 	forceSignAnnotated = true
-	# Sort tags by version instead of lexically, so that 
+	# Sort tags by version instead of lexically, so that
 	sort = version:refname
 # This helps Go build modules in private respositories on GitHub.
 [url "ssh://git@github.com/"]
@@ -79,4 +81,3 @@
     path = ~/.gitconfig-efk
 [includeIf "gitdir:~/src/nonvolatile/"]
     path = ~/.gitconfig-efk
-
