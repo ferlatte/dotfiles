@@ -9,6 +9,7 @@
 	uncommit = reset --soft HEAD^
 	praise = blame
 	zap = "!git reset --hard HEAD; git clean -df"
+	cleanup = "!git branch --merged | grep -v '\\*\\|main\\|master' | xargs git branch --delete"
 [branch]
 	# Sorting branch output by committerdate moves active branchs to the front, which are usually the
 	# branches you want to switch to.
