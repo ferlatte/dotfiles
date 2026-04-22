@@ -81,5 +81,3 @@
     insteadOf = https://github.com/
 [includeIf "gitdir:~/src/efk/"]
     path = ~/.gitconfig-efk
-[includeIf "gitdir:~/src/nonvolatile/"]
-    path = ~/.gitconfig-efk
