@@ -3,4 +3,4 @@ font-family = SF Mono
 window-height = 24
 window-width = 80
 keybind = global:cmd+control+grave_accent=toggle_quick_terminal
-
+window-padding-x = 8 # Need this for macOS to avoid the left window corner.
