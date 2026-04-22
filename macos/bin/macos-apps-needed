@@ -13,6 +13,7 @@ let needApps = [
   "Discovery",
   "Endel",
   "Flighty",
+  "Ghostty",
   "GitHub Desktop",
   "HomePass",
   "Kagi for Safari",
