@@ -1,0 +1,37 @@
+# Sync each account into a local Maildir message store.
+# Each account is represented by set of
+# MaildirStore
+# IMAPStore
+# IMAPAccount
+# Channel
+# configuration objects, all of which are joined together by a final Group object.
+#
+#
+
+MaildirStore mark@eeeeffkay.com-maildir
+    Inbox ~/Documents/Personal/Resources/Mail/mark@eeeeffkay.com/INBOX
+    Path ~/Documents/Personal/Resources/Mail/mark@eeeeffkay.com/
+    Subfolders Verbatim
+
+IMAPAccount mark@eeeeffkay.com-account
+    Host imap.mailbox.org
+    User mark@eeeeffkay.com
+    TLSType IMAPS
+    # security add-internet-password -r imap -s imap.mailbox.org -a mark@eeeeffkay.com -w password
+    UseKeychain yes
+    AuthMechs PLAIN
+
+IMAPStore mark@eeeeffkay.com-imap
+    Account mark@eeeeffkay.com-account
+
+Channel mark@eeeeffkay.com
+    Far :mark@eeeeffkay.com-imap:
+    Near :mark@eeeeffkay.com-maildir:
+    Patterns *
+    Sync Pull
+    Create Near
+    Remove Near
+    Expunge Near
+
+Group all
+    Channel mark@eeeeffkay.com
