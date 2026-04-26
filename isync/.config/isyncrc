@@ -8,6 +8,7 @@
 #
 #
 
+# mark@eeeeffkay.com
 MaildirStore mark@eeeeffkay.com-maildir
     Inbox ~/Documents/Personal/Resources/Mail/mark@eeeeffkay.com/INBOX
     Path ~/Documents/Personal/Resources/Mail/mark@eeeeffkay.com/
@@ -33,5 +34,61 @@ Channel mark@eeeeffkay.com
     Remove Near
     Expunge Near
 
+# mark@ferlatte.net
+MaildirStore mark@ferlatte.net-maildir
+    Inbox ~/Documents/Personal/Resources/Mail/mark@ferlatte.net/INBOX
+    Path ~/Documents/Personal/Resources/Mail/mark@ferlatte.net/
+    Subfolders Verbatim
+
+IMAPAccount mark@ferlatte.net-account
+    Host imap.mail.me.com
+    User markferlatte@icloud.com
+    TLSType IMAPS
+    # security add-internet-password -r imap -s imap.mail.me.com -a markferlatte@icloud.com -w password
+    UseKeychain yes
+    AuthMechs PLAIN
+
+IMAPStore mark@ferlatte.net-imap
+    Account mark@ferlatte.net-account
+
+Channel mark@ferlatte.net
+    Far :mark@ferlatte.net-imap:
+    Near :mark@ferlatte.net-maildir:
+    Patterns *
+    Sync Pull
+    Create Near
+    Remove Near
+    Expunge Near
+
+# ferlatte@gmail.com
+# This isn't going to work without some kind of OAuth handler which I don't have the time for right now.
+# Maybe later?
+# MaildirStore ferlatte@gmail.com-maildir
+#     Inbox ~/Documents/Personal/Resources/Mail/ferlatte@gmail.com/INBOX
+#     Path ~/Documents/Personal/Resources/Mail/ferlatte@gmail.com/
+#     Subfolders Verbatim
+
+# IMAPAccount ferlatte@gmail.com-account
+#     Host imap.mail.me.com
+#     User markferlatte@icloud.com
+#     TLSType IMAPS
+#     # security add-internet-password -r imap -s imap.mail.me.com -a ferlatte@gmail.com -w password
+#     UseKeychain yes
+#     AuthMechs PLAIN
+
+# IMAPStore ferlatte@gmail.com-imap
+#     Account ferlatte@gmail.com-account
+
+# Channel ferlatte@gmail.com
+#     Far :ferlatte@gmail.com-imap:
+#     Near :ferlatte@gmail.com-maildir:
+#     Patterns *
+#     Sync Pull
+#     Create Near
+#     Remove Near
+#     Expunge Near
+
 Group all
     Channel mark@eeeeffkay.com
+    Channel mark@ferlatte.net
+    Channel ferlatte@gmail.com
