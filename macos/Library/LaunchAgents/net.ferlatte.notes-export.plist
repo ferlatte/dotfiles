@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>net.ferlatte.notes-export</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/Applications/Apple Notes Exporter.app/Contents/SharedSupport/notes-export</string>
+            <string>export</string>
+            <string>--output</string>
+            <string>/Users/mark/Documents/Personal/Resources/Apple Notes</string>
+            <string>--incremental</string>
+        </array>
+        <key>StandardOutPath</key>
+        <string>/Users/mark/Library/Logs/notes-export.log</string>
+        <key>StandardErrorPath</key>
+        <string>/Users/mark/Library/Logs/notes-export.log</string>
+        <key>StartInterval</key>
+        <integer>3600</integer>
+
+    </dict>
+</plist>
