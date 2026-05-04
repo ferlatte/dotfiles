@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+This command enables the agent:
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/net.ferlatte.notes-export.plist
+
+This command runs it immediately to test it:
+launchctl kickstart -k gui/$(id -u)/net.ferlatte/net.ferlatte.notes-export
+-->
 <plist version="1.0">
     <dict>
         <key>Label</key>
@@ -18,6 +25,5 @@
         <string>/Users/mark/Library/Logs/notes-export.log</string>
         <key>StartInterval</key>
         <integer>3600</integer>
-
     </dict>
 </plist>
