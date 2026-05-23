@@ -13,11 +13,7 @@ launchctl kickstart -k gui/$(id -u)/net.ferlatte/net.ferlatte.notes-export
         <string>net.ferlatte.notes-export</string>
         <key>ProgramArguments</key>
         <array>
-            <string>/Applications/Apple Notes Exporter.app/Contents/SharedSupport/notes-export</string>
-            <string>export</string>
-            <string>--output</string>
-            <string>/Users/mark/Documents/Personal/Resources/Apple Notes</string>
-            <string>--incremental</string>
+            <string>/Users/mark/bin/macos-export-notes</string>
         </array>
         <key>StandardOutPath</key>
         <string>/Users/mark/Library/Logs/notes-export.log</string>

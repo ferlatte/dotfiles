@@ -1,0 +1,16 @@
+#! /usr/bin/env bash
+
+set -eu -o pipefail
+
+notes_export_path="/Users/mark/Documents/Personal/Resources/Apple Notes"
+notes_export_path_backup="/Users/mark/Documents/Personal/Resources/Apple Notes Backup"
+
+echo -n "export notes started: "
+date
+
+mv "$notes_export_path" "$notes_export_path_backup"
+"/Applications/Apple Notes Exporter.app/Contents/SharedSupport/notes-export" export --output "$notes_export_path"
+rm -r "$notes_export_path_backup"
+
+echo -n "export notes complete: "
+date
