@@ -1,36 +1,23 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-
+# macOS
 .DS_Store
 
+# Emacs backups and lock files
+*~
+\#*\#
+.\#*
+
+# Build artifacts: the Makefile's stamps, and prereqs' self-update temp file.
 *.stamp
+.bin/prereqs.tmp
+
+# ~/.gnupg is a symlink to this directory, so gpg writes keyrings, secret keys
+# and agent sockets straight into the repo. Track the config and nothing else.
+gnupg/.gnupg/*
+!gnupg/.gnupg/*.conf
+
+# ~/.emacs.d is a symlink to this directory, so Emacs writes packages, byte
+# compiled files and session state into it. Track the elisp config only; a new
+# file that doesn't end in .el needs `git add -f`.
+emacs/.emacs.d/*
+!emacs/.emacs.d/*.el
+!emacs/.emacs.d/personal/
