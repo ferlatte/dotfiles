@@ -5,7 +5,7 @@ This command enables the agent:
 launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/net.ferlatte.omnifocus-run-plugin.plist
 
 This command runs it immediately to test it:
-launchctl kickstart -k gui/$(id -u)/net.ferlatte/net.ferlatte.omnifocus-run-plugin
+launchctl kickstart -k gui/$(id -u)/net.ferlatte.omnifocus-run-plugin
 -->
 <plist version="1.0">
     <dict>
