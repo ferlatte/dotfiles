@@ -1,6 +1,9 @@
 # Shellcheck doesn't understand zsh specifically, and bash is close enough.
 # shellcheck shell=bash
 
+# shellcheck disable=SC2034 # path is zsh's tied array for PATH; shellcheck doesn't know this.
+typeset -U path PATH
+
 if [ -x /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [ -x /usr/local/bin/brew ]; then
@@ -39,4 +42,9 @@ fi
 if type gcloud &> /dev/null; then
     # This enables gcloud to use NumPy if you install it.
     export CLOUDSDK_PYTHON_SITEPACKAGES=1
+fi
+
+if [[ -f ~/.zshrc.local ]]; then
+    # shellcheck source=/dev/null
+    source ~/.zshrc.local
 fi
