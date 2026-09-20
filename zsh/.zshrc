@@ -10,7 +10,7 @@ export PATH="${HOME}/bin:/Applications/OrbStack.app/Contents/MacOS/xbin:/Applica
 
 # macOS ls needs this set for color output
 export CLICOLOR=yes
-export EDITOR=code
+export EDITOR="code --wait"
 # This maps to Solarized colors for ls output
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
