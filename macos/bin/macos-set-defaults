@@ -2,9 +2,13 @@
 
 set -eu
 
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
-systemSettingsRunning=$(osascript -l JavaScript -e 'Application("System Settings").quit()')
+# Close any open System Settings panes, to prevent them from overriding
+# settings we’re about to change. Ask whether it's running before quitting;
+# quit() doesn't report that, so asking it afterwards never re-opened anything.
+systemSettingsRunning=$(osascript -l JavaScript -e 'Application("System Settings").running()')
+if test "$systemSettingsRunning" = "true"; then
+    osascript -l JavaScript -e 'Application("System Settings").quit()' > /dev/null
+fi
 
 # This displays file extensions in the Finder and file picker
 # UI.
