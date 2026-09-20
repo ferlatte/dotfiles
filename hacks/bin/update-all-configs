@@ -16,11 +16,6 @@ popd > /dev/null
 macos-set-defaults
 macos-enable-sudo-touchid
 
-bash_it="${BASH_IT:-}"
-if [ -n "$bash_it" ]; then
-    bash-it-configure
-fi
-
 if inpath brew; then
     brewup
 fi
