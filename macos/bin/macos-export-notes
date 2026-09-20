@@ -8,9 +8,27 @@ notes_export_path_backup="/Users/mark/Documents/Personal/Resources/Apple Notes B
 echo -n "export notes started: "
 date
 
-mv "$notes_export_path" "$notes_export_path_backup"
+# A leftover backup means a previous run died partway through, and it holds the
+# only complete copy of the notes. Moving the current export on top of it would
+# nest it inside, and the rm below would then delete both. Bail out instead.
+if [[ -e $notes_export_path_backup ]]; then
+    echo "ERROR: ${notes_export_path_backup} already exists; a previous export failed." >&2
+    echo "Check it, then move it back into place or delete it before re-running." >&2
+    exit 1
+fi
+
+# There's nothing to back up on the very first run.
+backed_up=false
+if [[ -e $notes_export_path ]]; then
+    mv "$notes_export_path" "$notes_export_path_backup"
+    backed_up=true
+fi
+
 "/Applications/Apple Notes Exporter.app/Contents/SharedSupport/notes-export" export --output "$notes_export_path"
-rm -r "$notes_export_path_backup"
+
+if [[ $backed_up == "true" ]]; then
+    rm -r "$notes_export_path_backup"
+fi
 
 echo -n "export notes complete: "
 date
