@@ -1,2 +1,3 @@
 [fixed_dirs]
 enabled = true
+extra = ~/Library/pnpm/store/v11
