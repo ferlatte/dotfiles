@@ -9,7 +9,7 @@ clone into `~/.dotfiles`.
 cd .dotfiles
 
 stow zsh
-stow emacs
+stow git
 etc.
 
 `hacks/bin/update-all-configs` sort of automates updating everything I use.
