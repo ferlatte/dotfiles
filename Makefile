@@ -17,10 +17,17 @@ pre-commit: .git/hooks/pre-commit
 	.bin/prereqs -r README.md
 	touch .prereqs.stamp
 
+
+install: .prereqs.stamp
+	git config gpg.ssh.allowedSignersFile .etc/committer.keys
+# Refuse to pull a tip commit that isn't signed by a key in committer.keys.
+	git config merge.verifySignatures true
+# This verifies all commits since I started signing them reliably, and lists any that fail.
+	! git log --format='%G? %h %s' e68189b..HEAD | grep -v '^G'
 # We need to handle LaunchAgents & Applications as special cases; macOS doesn't create automatically,
 # and we can't assume other software won't put things there. Therefor, ensure they exist before
 # stow runs
-install: .prereqs.stamp
+	mkdir -m 0755 -p $(HOME)/Applications
 	mkdir -m 0755 -p $(HOME)/Library/LaunchAgents
 	stow */
 
