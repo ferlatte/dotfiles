@@ -1,8 +1,10 @@
 SHELL = /bin/bash
 PRE-COMMIT := $(shell which pre-commit)
 
+.PHONY: all
 all: pre-commit .prereqs.stamp install
 
+.PHONY: pre-commit
 # Shortcut to run pre-commit hooks over the entire repo.
 pre-commit: .git/hooks/pre-commit
 	pre-commit run --all-files
@@ -17,6 +19,7 @@ pre-commit: .git/hooks/pre-commit
 	.bin/prereqs -r README.md
 	touch .prereqs.stamp
 
+.PHONY: install
 install: .prereqs.stamp
 	git config gpg.ssh.allowedSignersFile .etc/committer.keys
 # Refuse to pull a tip commit that isn't signed by a key in committer.keys.
@@ -28,9 +31,8 @@ install: .prereqs.stamp
 # stow runs
 	mkdir -m 0755 -p $(HOME)/Applications
 	mkdir -m 0755 -p $(HOME)/Library/LaunchAgents
-	stow */
+	stow -R */
 
+.PHONY: clean
 clean:
 	rm -f .*.stamp
-
-.PHONY: all clean pre-commit install
