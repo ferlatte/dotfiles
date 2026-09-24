@@ -5,7 +5,6 @@
 
 pushd "$HOME" > /dev/null || exit 1
 
-asdf plugin add python
 asdf plugin add nodejs
 asdf plugin update --all
 
@@ -13,6 +12,6 @@ asdf plugin update --all
 # enable it globally as my default. There should be an "update" command
 # but there isn't, so you have to do this two-step.
 # asdf install python latest
-# asdf global python latest#
+# asdf global python latest
 
 asdf reshim
