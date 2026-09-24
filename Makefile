@@ -17,7 +17,6 @@ pre-commit: .git/hooks/pre-commit
 	.bin/prereqs -r README.md
 	touch .prereqs.stamp
 
-
 install: .prereqs.stamp
 	git config gpg.ssh.allowedSignersFile .etc/committer.keys
 # Refuse to pull a tip commit that isn't signed by a key in committer.keys.
