@@ -29,6 +29,12 @@
 	excludesfile = ~/.config/git/ignore
 	# quotepath turns filenames with accents or emoji into octal escaped strings when this is enabled. Not needed in 2025.
 	quotePath = false
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
 [diff]
 	# histogram is the new patience.
 	algorithm = histogram
@@ -80,4 +86,6 @@
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
 [includeIf "gitdir:~/src/efk/"]
-    path = ~/.gitconfig-efk
+    path = ~/.config/git/efk.gitconfig
+[includeIf "gitdir:~/src/sway/sway"]
+	path = ~/.config/git/sway.gitconfig
