@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Mark GitHub PR notifications as done when the PR is closed (merged or not),
+# or when you've reviewed it and the author hasn't re-requested your review.
+# Usage: gh-notif-clean [-n]   (-n = dry run, just print what would be done)
+set -euo pipefail
+
+dry=""; [ "${1:-}" = "-n" ] && dry=1
+me=$(gh api user --jq .login)
+export dry me
+
+check() {
+  IFS=$'\t' read -r id url title <<<"$1"
+  read -r state requested < <(gh api "$url" --jq \
+    "[.state, ([.requested_reviewers[].login] | index(\"$me\") != null)] | @tsv") || { echo "skip(error): $title"; return; }
+  reason=""
+  if [ "$state" = closed ]; then reason=closed
+  elif [ "$requested" = false ] &&
+       [ "$(gh api "$url/reviews" --paginate --jq ".[] | select(.user.login == \"$me\") | .id" | head -1)" ]; then
+    reason=reviewed
+  fi
+  [ -z "$reason" ] && return
+  if [ -n "$dry" ]; then echo "would mark done ($reason): $title"
+  elif gh api -X DELETE "notifications/threads/$id"; then echo "done ($reason): $title"
+  else echo "FAIL: $title"; fi
+}
+export -f check
+
+# shellcheck disable=SC2016 # $1 expands in the child bash
+gh api 'notifications?all=true' --paginate \
+  --jq '.[] | select(.subject.type == "PullRequest") | [.id, .subject.url, .subject.title] | @tsv' |
+  tr '\n' '\0' | xargs -0 -P 8 -I{} bash -c 'check "$1"' _ {}
