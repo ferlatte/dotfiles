@@ -4,7 +4,7 @@
 # shellcheck disable=SC2034 # path is zsh's tied array for PATH; shellcheck doesn't know this.
 typeset -U path PATH
 
-export PATH="${HOME}/bin:/Applications/OrbStack.app/Contents/MacOS/xbin:/Applications/OrbStack.app/Contents/MacOS/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:${PATH}"
+export PATH="${HOME}/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:${PATH}"
 
 # macOS ls needs this set for color output
 export CLICOLOR=yes
@@ -23,10 +23,6 @@ then
     # for the odd shell that never ran it.
     # shellcheck disable=SC2034 # fpath is used by zsh and shellcheck doesn't know this.
     fpath[1,0]="${HOMEBREW_PREFIX:-$(brew --prefix)}/share/zsh/site-functions"
-    autoload -Uz compinit
-    # compinit -i ignores fpath directories with insecure permissions. This is really
-    # common on multi-users macOS systems, and therefor annoying.
-    compinit -i
 fi
 
 if type direnv &> /dev/null; then
@@ -38,7 +34,18 @@ if type gcloud &> /dev/null; then
     export CLOUDSDK_PYTHON_SITEPACKAGES=1
 fi
 
+if [[ -f ~/.orbstack/shell/init.zsh ]]; then
+    # shellcheck source=/dev/null
+
+    source ~/.orbstack/shell/init.zsh
+fi
+
 if [[ -f ~/.zshrc.local ]]; then
     # shellcheck source=/dev/null
     source ~/.zshrc.local
 fi
+
+autoload -Uz compinit
+# compinit -i ignores fpath directories with insecure permissions. This is really
+# common on multi-users macOS systems, and therefor annoying.
+compinit -i
