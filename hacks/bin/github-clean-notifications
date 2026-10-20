@@ -1,31 +1,78 @@
-#!/usr/bin/env bash
-# Mark GitHub PR notifications as done when the PR is closed (merged or not),
-# or when you've reviewed it and the author hasn't re-requested your review.
-# Usage: gh-notif-clean [-n]   (-n = dry run, just print what would be done)
-set -euo pipefail
+#!/usr/bin/env python3
+"""Mark GitHub PR notifications as done when the PR is closed (merged or not),
+or when you've reviewed it and the author hasn't re-requested your review."""
+import argparse
+import json
+import signal
+import subprocess
+from concurrent.futures import ThreadPoolExecutor
 
-dry=""; [ "${1:-}" = "-n" ] && dry=1
-me=$(gh api user --jq .login)
-export dry me
 
-check() {
-  IFS=$'\t' read -r id url title <<<"$1"
-  read -r state requested < <(gh api "$url" --jq \
-    "[.state, ([.requested_reviewers[].login] | index(\"$me\") != null)] | @tsv") || { echo "skip(error): $title"; return; }
-  reason=""
-  if [ "$state" = closed ]; then reason=closed
-  elif [ "$requested" = false ] &&
-       [ "$(gh api "$url/reviews" --paginate --jq ".[] | select(.user.login == \"$me\") | .id" | head -1)" ]; then
-    reason=reviewed
-  fi
-  [ -z "$reason" ] && return
-  if [ -n "$dry" ]; then echo "would mark done ($reason): $title"
-  elif gh api -X DELETE "notifications/threads/$id"; then echo "done ($reason): $title"
-  else echo "FAIL: $title"; fi
-}
-export -f check
+def gh(*args):
+    out = subprocess.run(["gh", "api", *args], check=True, capture_output=True, text=True).stdout
+    return json.loads(out) if out.strip() else None
 
-# shellcheck disable=SC2016 # $1 expands in the child bash
-gh api 'notifications?all=true' --paginate \
-  --jq '.[] | select(.subject.type == "PullRequest") | [.id, .subject.url, .subject.title] | @tsv' |
-  tr '\n' '\0' | xargs -0 -P 8 -I{} bash -c 'check "$1"' _ {}
+
+def gh_pages(path):
+    return [item for page in gh(path, "--paginate", "--slurp") for item in page]
+
+
+def reason(state, requested, reviewed):
+    """reviewed is a callable so the extra API call only happens when needed."""
+    if state == "closed":
+        return "closed"
+    if not requested and reviewed():
+        return "reviewed"
+    return None
+
+
+def check(n, me, dry):
+    title, url = n["subject"]["title"], n["subject"]["url"]
+    try:
+        pr = gh(url)
+        why = reason(
+            pr["state"],
+            me in (r["login"] for r in pr["requested_reviewers"]),
+            lambda: any(r["user"]["login"] == me for r in gh_pages(f"{url}/reviews")),
+        )
+    except subprocess.CalledProcessError:
+        return f"skip(error): {title}"
+    if not why:
+        return None
+    if dry:
+        return f"would mark done ({why}): {title}"
+    try:
+        gh("-X", "DELETE", f"notifications/threads/{n['id']}")
+    except subprocess.CalledProcessError:
+        return f"FAIL: {title}"
+    return f"done ({why}): {title}"
+
+
+def self_test():
+    never = lambda: 1 / 0  # must not be called
+    assert reason("closed", True, never) == "closed"
+    assert reason("open", True, never) is None
+    assert reason("open", False, lambda: True) == "reviewed"
+    assert reason("open", False, lambda: False) is None
+    print("ok")
+
+
+def main():
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)  # quiet exit when piped to head
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("-n", "--dry-run", action="store_true", help="just print what would be done")
+    p.add_argument("--self-test", action="store_true", help=argparse.SUPPRESS)
+    args = p.parse_args()
+    if args.self_test:
+        return self_test()
+
+    me = gh("user")["login"]
+    prs = [n for n in gh_pages("notifications?all=true") if n["subject"]["type"] == "PullRequest"]
+    with ThreadPoolExecutor(8) as pool:
+        for line in pool.map(lambda n: check(n, me, args.dry_run), prs):
+            if line:
+                print(line, flush=True)
+
+
+if __name__ == "__main__":
+    main()
