@@ -22,6 +22,8 @@ fi
 
 asdfup
 
+ghup
+
 if inpath vagrant; then
     vagrant plugin update
 fi

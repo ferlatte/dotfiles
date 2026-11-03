@@ -1,0 +1,11 @@
+rules:
+  - name: finished
+    filters:
+      type: pr
+      state: [merged, closed]
+  - name: reviewed
+    filters:
+      type: pr
+      state: open
+      reason: review_requested
+      no-review-requested: "@me"
