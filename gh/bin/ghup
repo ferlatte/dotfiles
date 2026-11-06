@@ -1,3 +1,4 @@
 #! /bin/sh
 
 gh extension install maraino/gh-inbox
+gh extension upgrade --all
